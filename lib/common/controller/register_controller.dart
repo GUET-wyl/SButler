@@ -1,16 +1,17 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:learn/common/global/color.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
-  String account = '', password = '';
-  var accountValue, pwdValue, pwd2Value, nickName;
+  var phoneValue, pwdValue, pwd2Value, nickName;
   //获取账号输入框的值
-  getAccountValue() {
-    accountValue = accountController.text;
-    print('手机号为:$accountValue');
+  getPhoneValue() {
+    phoneValue = phoneController.text;
+    print('手机号为:$phoneValue');
   }
 
   //获取昵称输入框的值
@@ -32,61 +33,62 @@ class RegisterController extends GetxController {
   }
 
   //文本控制器
-  TextEditingController accountController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
   TextEditingController pwd2Controller = TextEditingController();
   TextEditingController nickNameController = TextEditingController();
   //焦点控制器
-  var accountFocus = FocusNode();
+  var phoneFocus = FocusNode();
   var pwdFocus = FocusNode();
   var pwd2Focus = FocusNode();
   var nickNameFocus = FocusNode();
   //错误提示文本
-  var accountErrorText = ''.obs;
+  var phoneErrorText = ''.obs;
   var pwdErrorText = ''.obs;
   var pwd2ErrorText = ''.obs;
   var nickNameErrorText = ''.obs;
   //正则表达式
-  static const regAccount =
-      r"^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\\d{8}$"; //验证11位手机号
-  static const regNickName = r"^[a-zA-Z0-9]{4,16}$"; //验证中文
-  static const regPassword = r"^[a-zA-Z0-9%&',;=?$/_\\x22]{6,16}$";
+  static const regPhone =
+      r"^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$"; //验证11位手机号
+  static const regNickName = r"^[\u4E00-\u9FA5A-Za-z0-9]{1,10}$"; //验证1到10位的中英文
+  static const regPassword =
+      r"^[a-zA-Z0-9%&',;=?$/_\\x22]{6,16}$"; //验证6~16位数字、大小写字母
   //非空判断、错误文本提示
-  void reAccount() {
-    if (accountController.text == '') {
-      accountErrorText.value = '手机号不能为空!';
-    } else if (!RegExp(regAccount).hasMatch(accountController.text)) {
-      accountErrorText.value = '手机号格式不正确!';
+  void rexPhone() {
+    if (phoneController.text == '') {
+      phoneErrorText.value = '手机号不能为空!';
+    } else if (!RegExp(regPhone).hasMatch(phoneController.text)) {
+      phoneErrorText.value = '手机号格式不正确!';
     } else {
-      accountErrorText.value = '';
+      phoneErrorText.value = '';
     }
   }
 
-  void reNickName() {
+  void rexNickName() {
     if (nickNameController.text == '') {
       nickNameErrorText.value = '昵称不能为空!';
     } else if (!RegExp(regNickName).hasMatch(nickNameController.text)) {
-      nickNameErrorText.value = '请输入中文昵称!';
+      nickNameErrorText.value = '请输入1到10位的中英文昵称!';
     } else {
       nickNameErrorText.value = '';
     }
   }
 
-  void rePassword() {
+  void rexPassword() {
     if (pwdController.text == '') {
       pwdErrorText.value = '密码不能为空!';
     } else if (!RegExp(regPassword).hasMatch(pwdController.text)) {
-      pwdErrorText.value = '密码由6~12位数字、大小写字母组成!';
+      pwdErrorText.value = '密码由6~16位数字、大小写字母组成!';
     } else {
       pwdErrorText.value = '';
     }
   }
 
-  void reRepassword() {
+  void rexRepassword() {
     if (pwd2Controller.text == '') {
       pwd2ErrorText.value = '密码不能为空!';
     } else if (!RegExp(regPassword).hasMatch(pwd2Controller.text)) {
-      pwd2ErrorText.value = '密码由6~12位数字、大小写字母组成!';
+      pwd2ErrorText.value = '密码由6~16位数字、大小写字母组成!';
     } else if (pwd2Controller.text != pwdController.text) {
       pwd2ErrorText.value = '两次输入的密码不同!';
     }
@@ -94,11 +96,11 @@ class RegisterController extends GetxController {
 
   //注册按钮
   void registerApi() async {
-    getAccountValue();
+    getPhoneValue();
     getPwdValue();
     getPwd2Value();
     getNickValue();
-    if (RegExp(regAccount).hasMatch(accountController.text) &&
+    if (RegExp(regPhone).hasMatch(phoneController.text) &&
         RegExp(regNickName).hasMatch(nickNameController.text) &&
         RegExp(regPassword).hasMatch(pwdController.text) &&
         pwd2Controller.text == pwdController.text) {
@@ -107,7 +109,7 @@ class RegisterController extends GetxController {
         msg: "register...",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
+        timeInSecForIosWeb: 3,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
@@ -118,12 +120,12 @@ class RegisterController extends GetxController {
       var res = await dio.post(
         '/auth/register',
         data: {
-          "username": accountValue,
+          "username": phoneValue,
           "password": pwdValue,
           "nickname": nickName,
         },
       );
-      print('注册接口：${res.data["code"]}');
+      // print('注册接口：${res.data["code"]}');
       if (res.data["code"] == 200) {
         //注册成功
         Fluttertoast.cancel(); //关闭清提示toast
@@ -138,24 +140,24 @@ class RegisterController extends GetxController {
 //开启监听输入框是否有值
   @override
   void onInit() {
-    accountFocus.addListener(() {
-      if (!accountFocus.hasFocus) {
-        reAccount();
+    phoneFocus.addListener(() {
+      if (!phoneFocus.hasFocus) {
+        rexPhone();
       }
     });
     nickNameFocus.addListener(() {
       if (!nickNameFocus.hasFocus) {
-        reNickName();
+        rexNickName();
       }
     });
     pwdFocus.addListener(() {
       if (!pwdFocus.hasFocus) {
-        rePassword();
+        rexPassword();
       }
     });
     pwd2Focus.addListener(() {
       if (!pwd2Focus.hasFocus) {
-        reRepassword();
+        rexRepassword();
       }
     });
     super.onInit();
@@ -164,14 +166,49 @@ class RegisterController extends GetxController {
 //销毁控制器
   @override
   void onClose() {
-    accountController.dispose();
+    phoneController.dispose();
     nickNameController.dispose();
     pwdController.dispose();
     pwd2Controller.dispose();
-    accountFocus.dispose();
+    phoneFocus.dispose();
     nickNameFocus.dispose();
     pwdFocus.dispose();
     pwd2Focus.dispose();
     super.onClose();
   }
+
+  //image_picker组件
+  var selectedImagePath = ''.obs;
+  var selectedImageSize = ''.obs;
+  void getImage(ImageSource imageSource) async {
+    final pickedFile = await ImagePicker().pickImage(source: imageSource);
+    if (pickedFile != null) {
+      selectedImagePath.value = pickedFile.path;
+      selectedImageSize.value =
+          ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              "Mb";
+    } else {
+      Get.snackbar(
+        'Error',
+        'No image selected',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  // var dio = Dio();
+  // 上传图片的方法
+  // void uploadImg(imageUrl) async {
+  //   FormData formData = FormData.fromMap({
+  //     "name": "admin",
+  //     "password": 123456,
+  //     "file": await MultipartFile.fromFile(imageUrl, filename: "avatar.img")
+  //   });
+  //   var result =
+  //       await dio.post("http://js.itying.com/imgupload", data: formData);
+  //   print(result);
+  // }
 }

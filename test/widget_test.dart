@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:learn/main.dart';
+import 'package:SButler/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -28,3 +28,47 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 }
+////////////////////
+// Padding(
+//             padding: EdgeInsets.only(
+//               left: 14.w,
+//               top: 55.h,
+//               bottom: 59.h,
+//             ),
+//             child: Row(
+//               children: [
+//                 Container(
+//                   width: 47.w,
+//                   height: 47.w,
+//                   child: Center(
+//                     child: Image.asset(
+//                       'assets/person.png',
+//                       width: 38.w,
+//                       height: 33.w,
+//                       fit: BoxFit.cover,
+//                     ),
+//                   ),
+//                   decoration: BoxDecoration(
+//                     color: GlobalColor.cd5,
+//                     borderRadius: BorderRadius.circular(23.5.w),
+//                     border: Border.all(
+//                       width: 2.w,
+//                       color: GlobalColor.c3f,
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(
+//                   width: 13.w,
+//                 ),
+//                 Text(
+//                   '蛋蛋',
+//                   style: TextStyle(
+//                     color: GlobalColor.c3f,
+//                     fontSize: 16.sp,
+//                     fontFamily: 'PingFang SC',
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                 )
+//               ],
+//             ),
+//           ),

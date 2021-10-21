@@ -1,16 +1,16 @@
+import 'package:SButler/common/controller/login_controller.dart';
+import 'package:SButler/common/global/public.dart';
+import 'package:SButler/common/widgets/agreement_privacy.dart';
+import 'package:SButler/common/widgets/button.dart';
+import 'package:SButler/common/widgets/text_input.dart';
+import 'package:SButler/common/widgets/top_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:learn/common/global/public.dart';
-import 'package:learn/common/widgets/agreement_privacy.dart';
-import 'package:learn/common/widgets/button.dart';
-import 'package:learn/common/widgets/top_appbar.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
-  get controller => null;
-
+  LoginPage({Key? key}) : super(key: key);
+  final LoginController lc = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     var obscureText;
@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: SelfAppbar(
         onBack: () {
-          Get.back();
+          Get.toNamed('/');
         },
         txt: '登录',
         mainContent: ListView(
@@ -89,94 +89,46 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   //手机号
-                  Container(
-                    width: 281.w,
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      color: GlobalColor.c1a,
-                      borderRadius: BorderRadius.circular(29.r),
+                  InputWidget(
+                    hintText: '手机号',
+                    node: lc.phoneFocus,
+                    controller: lc.phoneController,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 5.h,
                     ),
-                    child: TextField(
-                      controller: controller,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: GlobalColor.c3f,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'PingFang SC',
-                      ),
-                      decoration: InputDecoration(
-                        isDense: true,
-                        contentPadding:
-                            EdgeInsets.fromLTRB(12.w, 15.h, 12.w, 15.h),
-                        hintText: '手机号',
-                        hintStyle: TextStyle(
+                    child: Obx(
+                      () => Text(
+                        '${lc.phoneErrorText}',
+                        style: TextStyle(
+                          color: GlobalColor.c3f,
                           fontSize: 14.sp,
-                          color: GlobalColor.c3f.withOpacity(.2),
-                          fontWeight: FontWeight.w400,
                         ),
-                        border: InputBorder.none,
                       ),
-                      obscureText: obscureText ?? false,
-                      focusNode: node,
-                      cursorColor: GlobalColor.c3f,
                     ),
                   ),
                   SizedBox(
                     height: 22.h,
                   ),
                   //密码
-                  Container(
-                    width: 281.w,
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      color: GlobalColor.c1a,
-                      borderRadius: BorderRadius.circular(29.r),
+                  InputWidget(
+                    hintText: '密码',
+                    node: lc.pwdFocus,
+                    obscureText: true,
+                    controller: lc.pwdController,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 5.h,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: 12.w,
-                        right: 12.w,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 220.w,
-                            height: 50.h,
-                            child: TextField(
-                              controller: controller,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: GlobalColor.c3f,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'PingFang SC',
-                              ),
-                              decoration: InputDecoration(
-                                isDense: false,
-                                contentPadding:
-                                    EdgeInsets.only(top: 15.h, bottom: 15.w),
-                                hintText: '密码',
-                                hintStyle: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: GlobalColor.c3f.withOpacity(.2),
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                border: InputBorder.none,
-                              ),
-                              obscureText: obscureText ?? false,
-                              focusNode: node,
-                              cursorColor: GlobalColor.c3f,
-                            ),
-                          ),
-                          GestureDetector(
-                            child: Image.asset(
-                              'assets/open_eyes.png',
-                              fit: BoxFit.fill,
-                              width: 24.w,
-                              height: 14.h,
-                            ),
-                          ),
-                        ],
+                    child: Obx(
+                      () => Text(
+                        '${lc.pwdErrorText}',
+                        style: TextStyle(
+                          color: GlobalColor.c3f,
+                          fontSize: 14.sp,
+                        ),
                       ),
                     ),
                   ),
@@ -185,6 +137,9 @@ class LoginPage extends StatelessWidget {
                   ),
                   //按钮
                   BtnWidget(
+                    onClick: () {
+                      lc.loginApi();
+                    },
                     btnText: '进入星球',
                     btnWidth: 192.w,
                     btnHeight: 46.h,

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learn/common/global/public.dart';
+import 'package:SButler/common/global/public.dart';
 
-class LoginAndRegisterInputWidget extends StatelessWidget {
+class InputWidget extends StatelessWidget {
   final TextEditingController? controller;
   final FocusNode? node;
   final bool? obscureText;
   final String? hintText;
-  const LoginAndRegisterInputWidget({
+  var btnBgColor;
+  InputWidget({
     Key? key,
     this.controller,
     this.node,
     this.obscureText,
     required this.hintText,
+    this.btnBgColor,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class LoginAndRegisterInputWidget extends StatelessWidget {
       width: 281.w,
       height: 50.h,
       decoration: BoxDecoration(
-        color: GlobalColor.c1a,
+        color: btnBgColor ?? GlobalColor.c1a,
         borderRadius: BorderRadius.circular(29.r),
       ),
       child: Padding(

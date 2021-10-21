@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn/common/widgets/bg_picture.dart';
 import 'common/global/public.dart';
+import 'common/pages/404/404.dart';
+import 'common/pages/absorbed/absorbed.dart';
+import 'common/pages/account_details/account_details.dart';
+import 'common/pages/bad_net/bad_net.dart';
+import 'common/pages/fail/fail.dart';
+import 'common/pages/feedback/feedback.dart';
+import 'common/pages/guide/guide.dart';
 import 'common/pages/home/home.dart';
 import 'common/pages/index/index.dart';
+import 'common/pages/learn_record/learn_record.dart';
 import 'common/pages/login/login.dart';
+import 'common/pages/my_account/my_account.dart';
 import 'common/pages/register/register.dart';
-import 'common/widgets/text_input.dart';
-import 'common/widgets/top_appbar.dart';
+import 'common/pages/set/set.dart';
+import 'common/pages/success/success.dart';
+import 'common/pages/task/task.dart';
+import 'common/pages/upload_photo/upload_photo.dart';
+import 'common/pages/upload_photo2/upload_photo2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,96 +54,28 @@ class MyApp extends StatelessWidget {
         //   Locale('en', 'Us'),
         // ],
         //路由
-        initialRoute: '/register',
+        initialRoute: '/home',
         routes: {
-          '/': (context) => const IndexPage(), //引导页
-          '/home': (context) => const HomePage(), //首页
-          '/login': (context) => const LoginPage(), //登录页
-          '/register': (context) => RegisterPage(), //注册页
-          '/up_photo': (context) => const UploadPhoto(), //上传头像
+          '/': (context) => const GuidePage(), //引导页
+          '/index': (context) => const IndexPage(), //主页
+          '/home': (context) => HomePage(), //首页
+          '/login': (context) => LoginPage(), //登录
+          '/set': (context) => SetPage(), //设置
+          '/feedback': (context) => FeedBackPage(), //意见反馈
+          '/register': (context) => RegisterPage(), //注册
+          '/up_photo': (context) => UploadPhoto(), //上传头像
+          '/up_photo2': (context) => UploadPhoto2(), //上传头像2
+          '/my_account': (context) => MyAccountPage(), //我的账户
+          '/account_details': (context) => AccountDetails(), //账户明细
+          '/404': (context) => NoConPage(), //无内容
+          '/bad_net': (context) => const NoNetPage(), //无网
+          '/success_results': (context) => const SuccessPage(), //专注成功
+          '/fail_results': (context) => const FailPage(), //专注失败
+          '/learn_records': (context) => RecordsPage(), //学习记录
+          '/absorbed': (context) => AbsorbedPage(), //专注
+          '/task': (context) => TaskPage(), //任务
         },
-        // home: LoginAndRegisterInputWidget(
-        //   hintText: '密码',
-        // ),
       ),
     );
-  }
-}
-
-class LoginAndRegisterInputWidget extends StatelessWidget {
-  final TextEditingController? controller;
-  final FocusNode? node;
-  final bool? obscureText;
-  final String? hintText;
-  const LoginAndRegisterInputWidget(
-      {Key? key,
-      this.controller,
-      this.node,
-      this.obscureText,
-      required this.hintText})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          width: 281.w,
-          height: 50.h,
-          decoration: BoxDecoration(
-            color: GlobalColor.c1a,
-            borderRadius: BorderRadius.circular(29.r),
-          ),
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: 12.w,
-              right: 12.w,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 220.w,
-                  height: 50.h,
-                  child: TextField(
-                    controller: controller,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      color: GlobalColor.c3f,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'PingFang SC',
-                    ),
-                    decoration: InputDecoration(
-                      isDense: false,
-                      contentPadding: EdgeInsets.only(top: 15.w, bottom: 15.w),
-                      hintText: '密码',
-                      hintStyle: TextStyle(
-                        fontSize: 14.sp,
-                        color: GlobalColor.c3f.withOpacity(.2),
-                        fontWeight: FontWeight.w400,
-                      ),
-                      border: InputBorder.none,
-                    ),
-                    obscureText: obscureText ?? false,
-                    focusNode: node,
-                    cursorColor: GlobalColor.c3f,
-                  ),
-                ),
-                GestureDetector(
-                  child: Image.asset(
-                    'assets/open_eyes.png',
-                    fit: BoxFit.fill,
-                    width: 24.w,
-                    height: 14.w,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    ));
   }
 }

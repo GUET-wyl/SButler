@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learn/common/global/color.dart';
-import 'package:learn/common/global/public.dart';
-import 'package:learn/common/widgets/top_appbar.dart';
+import 'package:SButler/common/global/color.dart';
+import 'package:SButler/common/global/public.dart';
+import 'package:SButler/common/widgets/top_appbar.dart';
 
 //用户协议和隐私政策
 class AgreementAndPrivacy extends StatelessWidget {

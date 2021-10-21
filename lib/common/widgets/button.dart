@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:learn/common/global/color.dart';
+import 'package:SButler/common/global/color.dart';
 
 //无边框
 class BtnWidget extends StatelessWidget {
