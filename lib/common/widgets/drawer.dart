@@ -27,7 +27,7 @@ class DrawerWidget extends StatelessWidget {
                   height: 47.w,
                   child: Center(
                     child: Image.asset(
-                      'assets/person.png',
+                      'assets/images/person.png',
                       width: 38.w,
                       height: 33.w,
                       fit: BoxFit.cover,
@@ -62,7 +62,7 @@ class DrawerWidget extends StatelessWidget {
               Get.toNamed('/my_account');
             },
             photo: Image.asset(
-              'assets/account.png',
+              'assets/images/account.png',
               width: 20.w,
               height: 20.w,
               fit: BoxFit.cover,
@@ -74,7 +74,7 @@ class DrawerWidget extends StatelessWidget {
               Get.toNamed('/learn_records');
             },
             photo: Image.asset(
-              'assets/record.png',
+              'assets/images/record.png',
               width: 20.w,
               height: 20.w,
               fit: BoxFit.cover,
@@ -83,10 +83,10 @@ class DrawerWidget extends StatelessWidget {
           ),
           _DrawerCon(
             onClick: () {
-              print('头像修改');
+              Get.toNamed('/change_avatar');
             },
             photo: Image.asset(
-              'assets/photo.png',
+              'assets/images/photo.png',
               width: 20.w,
               height: 20.w,
               fit: BoxFit.cover,
@@ -109,7 +109,7 @@ class DrawerWidget extends StatelessWidget {
               );
             },
             photo: Image.asset(
-              'assets/nickname.png',
+              'assets/images/nickname.png',
               width: 20.w,
               height: 20.w,
               fit: BoxFit.cover,
@@ -121,7 +121,7 @@ class DrawerWidget extends StatelessWidget {
               Get.toNamed('/set');
             },
             photo: Image.asset(
-              'assets/set.png',
+              'assets/images/set.png',
               width: 20.w,
               height: 20.w,
               fit: BoxFit.cover,
@@ -133,7 +133,7 @@ class DrawerWidget extends StatelessWidget {
               Get.toNamed('/feedback');
             },
             photo: Image.asset(
-              'assets/feedback.png',
+              'assets/images/feedback.png',
               width: 20.w,
               height: 20.w,
               fit: BoxFit.cover,

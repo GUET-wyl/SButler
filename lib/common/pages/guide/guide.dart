@@ -11,20 +11,16 @@ class GuidePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackPictureWidget(
       content: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            SizedBox(
-              height: 72.h,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 282.w,
-              ),
+            Positioned(
+              top: 116.h,
+              left: 282.w,
               child: Image.asset(
-                'assets/moon.png',
+                'assets/images/moon.png',
                 width: 25.w,
                 height: 25.w,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             SizedBox(
@@ -32,44 +28,42 @@ class GuidePage extends StatelessWidget {
             ),
             Center(
               child: Image.asset(
-                'assets/astronaut.png',
+                'assets/images/astronaut.png',
                 width: 344.w,
                 height: 293.w,
                 fit: BoxFit.fill,
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 42.w,
-                top: 130.h,
-                right: 200.w,
+            Positioned(
+              top: 629.h,
+              left: 42.w,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '你只管努力',
+                    style: TextStyle(
+                      color: GlobalColor.c3f,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'PingFang SC',
+                    ),
+                  ),
+                  SizedBox(
+                    height: 9.h,
+                  ),
+                  Text(
+                    '剩下的交给时间',
+                    style: TextStyle(
+                      color: GlobalColor.c3f,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: 'PingFang SC',
+                    ),
+                  ),
+                ],
               ),
-              child: Text(
-                '纵使面对浩瀚星球',
-                style: TextStyle(
-                  color: GlobalColor.c3f,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'PingFang SC',
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 42.w,
-                top: 9.h,
-                right: 189.w,
-              ),
-              child: Text(
-                '你的目标都只有一个',
-                style: TextStyle(
-                  color: GlobalColor.c3f,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'PingFang SC',
-                ),
-              ),
-            ),
+            )
           ],
         ),
       ),

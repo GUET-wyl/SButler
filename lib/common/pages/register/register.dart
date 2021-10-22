@@ -15,7 +15,7 @@ class RegisterPage extends StatelessWidget {
     final RegisterController rc = Get.put(RegisterController());
     return SelfAppbar(
       onBack: () {
-        Get.toNamed('/');
+        Get.toNamed('/index');
       },
       txt: '注册',
       mainContent: ListView(
@@ -43,7 +43,7 @@ class RegisterPage extends StatelessWidget {
                   top: 15.h,
                 ),
                 child: Image.asset(
-                  'assets/star.png',
+                  'assets/images/star.png',
                   fit: BoxFit.fill,
                   width: 119.w,
                   height: 80.w,
@@ -135,11 +135,11 @@ class RegisterPage extends StatelessWidget {
                   height: 22.h,
                 ),
                 //密码
-                InputWidget(
+                Input2Widget(
                   hintText: '密码',
                   node: rc.pwdFocus,
                   obscureText: true,
-                  controller: rc.pwdController,
+                  controller: rc.pwd1Controller,
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -159,7 +159,7 @@ class RegisterPage extends StatelessWidget {
                   height: 22.h,
                 ),
                 //再次输入密码
-                InputWidget(
+                Input3Widget(
                   hintText: '再次输入密码',
                   node: rc.pwd2Focus,
                   obscureText: true,

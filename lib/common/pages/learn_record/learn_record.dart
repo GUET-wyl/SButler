@@ -35,7 +35,7 @@ class RecordsPage extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/totaldata.png',
+                      'assets/images/totaldata.png',
                       fit: BoxFit.cover,
                       width: 20.w,
                       height: 23.w,
@@ -187,7 +187,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -214,7 +214,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,
@@ -261,7 +261,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -288,7 +288,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,
@@ -335,7 +335,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -362,7 +362,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,
@@ -444,7 +444,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -471,7 +471,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,
@@ -518,7 +518,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -545,7 +545,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,
@@ -644,7 +644,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -671,7 +671,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,
@@ -718,7 +718,7 @@ class RecordsPage extends StatelessWidget {
                                     Row(
                                       children: [
                                         Image.asset(
-                                          'assets/task.png',
+                                          'assets/images/task.png',
                                           fit: BoxFit.cover,
                                           width: 13.w,
                                           height: 13.w,
@@ -745,7 +745,7 @@ class RecordsPage extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/time.png',
+                                                  'assets/images/time.png',
                                                   fit: BoxFit.cover,
                                                   width: 10.w,
                                                   height: 10.w,

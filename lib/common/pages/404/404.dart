@@ -23,7 +23,7 @@ class NoConPage extends StatelessWidget {
                   bottom: 34.h,
                 ),
                 child: Image.asset(
-                  'assets/nocon.png',
+                  'assets/images/nocon.png',
                   fit: BoxFit.fill,
                   width: 192.w,
                   height: 193.w,

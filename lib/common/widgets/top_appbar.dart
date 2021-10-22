@@ -30,8 +30,8 @@ class SelfAppbar extends StatelessWidget {
                   left: 15.w,
                 ),
                 child: Image.asset(
-                  'assets/back.png',
-                  fit: BoxFit.fill,
+                  'assets/images/back.png',
+                  fit: BoxFit.cover,
                   width: 28.w,
                   height: 28.w,
                 ),
@@ -88,7 +88,7 @@ class SelfAppbar2 extends StatelessWidget {
                       left: 20.w,
                     ),
                     child: Image.asset(
-                      'assets/my.png',
+                      'assets/images/my.png',
                       fit: BoxFit.cover,
                       width: 28.w,
                       height: 28.w,
@@ -135,8 +135,8 @@ class SelfAppbar3 extends StatelessWidget {
                   GestureDetector(
                     onTap: onBack,
                     child: Image.asset(
-                      'assets/back.png',
-                      fit: BoxFit.fill,
+                      'assets/images/back.png',
+                      fit: BoxFit.cover,
                       width: 28.w,
                       height: 28.w,
                     ),
@@ -199,8 +199,8 @@ class SelfAppbar4 extends StatelessWidget {
                   left: 15.w,
                 ),
                 child: Image.asset(
-                  'assets/back.png',
-                  fit: BoxFit.fill,
+                  'assets/images/back.png',
+                  fit: BoxFit.cover,
                   width: 28.w,
                   height: 28.w,
                 ),

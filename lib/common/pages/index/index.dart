@@ -22,7 +22,7 @@ class IndexPage extends StatelessWidget {
                 left: 282.w,
               ),
               child: Image.asset(
-                'assets/moon.png',
+                'assets/images/moon.png',
                 width: 25.w,
                 height: 25.w,
                 fit: BoxFit.fill,
@@ -33,7 +33,7 @@ class IndexPage extends StatelessWidget {
             ),
             Center(
               child: Image.asset(
-                'assets/astronaut.png',
+                'assets/images/astronaut.png',
                 width: 344.w,
                 height: 293.w,
                 fit: BoxFit.fill,

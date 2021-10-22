@@ -4,7 +4,9 @@ import 'common/global/public.dart';
 import 'common/pages/404/404.dart';
 import 'common/pages/absorbed/absorbed.dart';
 import 'common/pages/account_details/account_details.dart';
+import 'common/pages/agreement_policy/agreement_policy.dart';
 import 'common/pages/bad_net/bad_net.dart';
+import 'common/pages/change_avatar/change_avatar.dart';
 import 'common/pages/fail/fail.dart';
 import 'common/pages/feedback/feedback.dart';
 import 'common/pages/guide/guide.dart';
@@ -19,6 +21,7 @@ import 'common/pages/success/success.dart';
 import 'common/pages/task/task.dart';
 import 'common/pages/upload_photo/upload_photo.dart';
 import 'common/pages/upload_photo2/upload_photo2.dart';
+import 'common/pages/user_agreement/user_agreement.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
         //   Locale('en', 'Us'),
         // ],
         //路由
-        initialRoute: '/home',
+        initialRoute: '/register',
         routes: {
           '/': (context) => const GuidePage(), //引导页
           '/index': (context) => const IndexPage(), //主页
@@ -74,6 +77,9 @@ class MyApp extends StatelessWidget {
           '/learn_records': (context) => RecordsPage(), //学习记录
           '/absorbed': (context) => AbsorbedPage(), //专注
           '/task': (context) => TaskPage(), //任务
+          '/change_avatar': (context) => ChangeAvatar(), //修改头像
+          '/user_agreement': (context) => UserAgreement(), //用户协议
+          '/agreement_policy': (context) => AgreementPolicy(), //用户协议
         },
       ),
     );

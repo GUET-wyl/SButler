@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:SButler/common/global/color.dart';
 import 'package:SButler/common/global/public.dart';
 import 'package:SButler/common/widgets/top_appbar.dart';
+import 'package:get/get.dart';
 
 //用户协议和隐私政策
 class AgreementAndPrivacy extends StatelessWidget {
@@ -35,7 +36,7 @@ class AgreementAndPrivacy extends StatelessWidget {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      print('用户协议');
+                      Get.toNamed('/user_agreement');
                     },
                 ),
                 TextSpan(

@@ -7,6 +7,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
+  var obscureText = true.obs;
+  //任意切换密码
+  toggleEyes() {
+    obscureText.value = !obscureText.value;
+  }
+
   var phoneValue, pwdValue, pwd2Value, nickName;
   //获取账号输入框的值
   getPhoneValue() {
@@ -22,7 +28,7 @@ class RegisterController extends GetxController {
 
   //获取密码输入框的值
   getPwdValue() {
-    pwdValue = pwdController.text;
+    pwdValue = pwd1Controller.text;
     print('密码为:$pwdValue');
   }
 
@@ -34,7 +40,7 @@ class RegisterController extends GetxController {
 
   //文本控制器
   TextEditingController phoneController = TextEditingController();
-  TextEditingController pwdController = TextEditingController();
+  TextEditingController pwd1Controller = TextEditingController();
   TextEditingController pwd2Controller = TextEditingController();
   TextEditingController nickNameController = TextEditingController();
   //焦点控制器
@@ -75,9 +81,9 @@ class RegisterController extends GetxController {
   }
 
   void rexPassword() {
-    if (pwdController.text == '') {
+    if (pwd1Controller.text == '') {
       pwdErrorText.value = '密码不能为空!';
-    } else if (!RegExp(regPassword).hasMatch(pwdController.text)) {
+    } else if (!RegExp(regPassword).hasMatch(pwd1Controller.text)) {
       pwdErrorText.value = '密码由6~16位数字、大小写字母组成!';
     } else {
       pwdErrorText.value = '';
@@ -89,7 +95,7 @@ class RegisterController extends GetxController {
       pwd2ErrorText.value = '密码不能为空!';
     } else if (!RegExp(regPassword).hasMatch(pwd2Controller.text)) {
       pwd2ErrorText.value = '密码由6~16位数字、大小写字母组成!';
-    } else if (pwd2Controller.text != pwdController.text) {
+    } else if (pwd2Controller.text != pwd1Controller.text) {
       pwd2ErrorText.value = '两次输入的密码不同!';
     }
   }
@@ -102,8 +108,8 @@ class RegisterController extends GetxController {
     getNickValue();
     if (RegExp(regPhone).hasMatch(phoneController.text) &&
         RegExp(regNickName).hasMatch(nickNameController.text) &&
-        RegExp(regPassword).hasMatch(pwdController.text) &&
-        pwd2Controller.text == pwdController.text) {
+        RegExp(regPassword).hasMatch(pwd1Controller.text) &&
+        pwd2Controller.text == pwd1Controller.text) {
       //开启轻提示toast
       Fluttertoast.showToast(
         msg: "register...",
@@ -168,7 +174,7 @@ class RegisterController extends GetxController {
   void onClose() {
     phoneController.dispose();
     nickNameController.dispose();
-    pwdController.dispose();
+    pwd1Controller.dispose();
     pwd2Controller.dispose();
     phoneFocus.dispose();
     nickNameFocus.dispose();

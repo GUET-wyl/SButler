@@ -4,6 +4,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
+  var obscureText = true.obs;
+  //任意切换密码
+  toggleEyes() {
+    obscureText.value = !obscureText.value;
+  }
+
   var phoneValue, pwdValue;
   //获取账号输入框的值
   getPhoneValue() {

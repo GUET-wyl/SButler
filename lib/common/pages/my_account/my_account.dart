@@ -30,7 +30,7 @@ class MyAccountPage extends StatelessWidget {
                   bottom: 30.h,
                 ),
                 child: Image.asset(
-                  'assets/coin.png',
+                  'assets/images/coin.png',
                   fit: BoxFit.fill,
                   width: 304.w,
                   height: 241.w,

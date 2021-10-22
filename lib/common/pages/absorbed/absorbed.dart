@@ -31,7 +31,7 @@ class AbsorbedPage extends StatelessWidget {
                   child: Row(
                     children: [
                       Image.asset(
-                        'assets/taskname.png',
+                        'assets/images/taskname.png',
                         fit: BoxFit.cover,
                         width: 22.w,
                         height: 22.w,
@@ -92,7 +92,7 @@ class AbsorbedPage extends StatelessWidget {
                   child: Row(
                     children: [
                       Image.asset(
-                        'assets/big_time.png',
+                        'assets/images/big_time.png',
                         fit: BoxFit.cover,
                         width: 22.w,
                         height: 22.w,
@@ -222,7 +222,7 @@ class AbsorbedPage extends StatelessWidget {
                   child: Row(
                     children: [
                       Image.asset(
-                        'assets/challenge_money.png',
+                        'assets/images/challenge_money.png',
                         fit: BoxFit.cover,
                         width: 22.w,
                         height: 22.w,

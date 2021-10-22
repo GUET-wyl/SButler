@@ -31,7 +31,7 @@ class FailPage extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                'assets/fail.png',
+                'assets/images/fail.png',
                 fit: BoxFit.cover,
                 width: 245.w,
                 height: 258.w,

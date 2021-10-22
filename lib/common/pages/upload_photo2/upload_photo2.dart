@@ -37,7 +37,7 @@ class UploadPhoto2 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 175.h, right: 30.w),
                       child: Image.asset(
-                        'assets/left_star.png',
+                        'assets/images/left_star.png',
                         fit: BoxFit.fill,
                         width: 36.81.w,
                         height: 40.35.w,
@@ -50,11 +50,11 @@ class UploadPhoto2 extends StatelessWidget {
                               width: 163.w,
                               height: 163.w,
                               decoration: BoxDecoration(
-                                color: Color(0xffd5d5d5),
+                                color: GlobalColor.cd5,
                                 borderRadius: BorderRadius.circular(81.5.w),
                                 border: Border.all(
                                   width: 4.w,
-                                  color: Colors.white,
+                                  color: GlobalColor.c3f,
                                 ),
                               ),
                             )
@@ -70,7 +70,7 @@ class UploadPhoto2 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 64.h, left: 33.w),
                       child: Image.asset(
-                        'assets/right_star.png',
+                        'assets/images/right_star.png',
                         fit: BoxFit.fill,
                         width: 27.72.w,
                         height: 29.84.w,

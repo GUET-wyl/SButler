@@ -23,7 +23,7 @@ class NoNetPage extends StatelessWidget {
                   bottom: 24.h,
                 ),
                 child: Image.asset(
-                  'assets/nonet.png',
+                  'assets/images/nonet.png',
                   fit: BoxFit.fill,
                   width: 192.w,
                   height: 213.w,

@@ -53,7 +53,7 @@ class DialogWidget extends StatelessWidget {
                           Row(
                             children: [
                               Image.asset(
-                                'assets/path.png',
+                                'assets/images/path.png',
                                 fit: BoxFit.cover,
                                 width: 19.w,
                                 height: 19.w,
@@ -78,7 +78,7 @@ class DialogWidget extends StatelessWidget {
                               Get.back();
                             },
                             child: Image.asset(
-                              'assets/close.png',
+                              'assets/images/close.png',
                               fit: BoxFit.cover,
                               width: 15.w,
                               height: 15.w,
@@ -165,7 +165,7 @@ class DialogWidget1 extends StatelessWidget {
                           Row(
                             children: [
                               Image.asset(
-                                'assets/path.png',
+                                'assets/images/path.png',
                                 fit: BoxFit.cover,
                                 width: 19.w,
                                 height: 19.w,
@@ -190,7 +190,7 @@ class DialogWidget1 extends StatelessWidget {
                               Get.back();
                             },
                             child: Image.asset(
-                              'assets/close.png',
+                              'assets/images/close.png',
                               fit: BoxFit.cover,
                               width: 15.w,
                               height: 15.w,

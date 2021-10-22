@@ -30,7 +30,7 @@ class SuccessPage extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                'assets/success.png',
+                'assets/images/success.png',
                 fit: BoxFit.cover,
                 width: GlobalSize.width,
                 height: 365.w,

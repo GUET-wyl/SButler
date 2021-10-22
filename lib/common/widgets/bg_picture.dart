@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:SButler/common/global/public.dart';
 
+//全背景图
 class BackPictureWidget extends StatelessWidget {
   final Widget content;
   BackPictureWidget({
@@ -14,11 +15,10 @@ class BackPictureWidget extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-            top: 128.h,
             width: GlobalSize.width,
             height: GlobalSize.height,
             child: Image.asset(
-              'assets/bg.png',
+              'assets/images/bg.png',
               fit: BoxFit.fill,
               width: GlobalSize.width,
               height: GlobalSize.height,
@@ -33,6 +33,7 @@ class BackPictureWidget extends StatelessWidget {
   }
 }
 
+//非全背景图
 class BackPictureWidget2 extends StatelessWidget {
   final Widget content2;
   BackPictureWidget2({
@@ -50,7 +51,7 @@ class BackPictureWidget2 extends StatelessWidget {
             width: GlobalSize.width,
             height: 684.h,
             child: Image.asset(
-              'assets/bg.png',
+              'assets/images/bg2.png',
               fit: BoxFit.fill,
               width: GlobalSize.width,
               height: 684.h,

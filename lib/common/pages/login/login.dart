@@ -13,12 +13,10 @@ class LoginPage extends StatelessWidget {
   final LoginController lc = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    var obscureText;
-    var node;
     return SafeArea(
       child: SelfAppbar(
         onBack: () {
-          Get.toNamed('/');
+          Get.toNamed('/index');
         },
         txt: '登录',
         mainContent: ListView(
@@ -29,7 +27,7 @@ class LoginPage extends StatelessWidget {
             //LOGO
             Center(
               child: Image.asset(
-                'assets/star.png',
+                'assets/images/star.png',
                 fit: BoxFit.fill,
                 width: 119.w,
                 height: 80.w,
@@ -112,7 +110,7 @@ class LoginPage extends StatelessWidget {
                     height: 22.h,
                   ),
                   //密码
-                  InputWidget(
+                  Input1Widget(
                     hintText: '密码',
                     node: lc.pwdFocus,
                     obscureText: true,

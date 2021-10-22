@@ -30,7 +30,7 @@ class TaskPage extends StatelessWidget {
                     height: 326.w,
                     child: Center(
                       child: Image.asset(
-                        'assets/person.png',
+                        'assets/images/person.png',
                         width: 280.w,
                         height: 280.w,
                         fit: BoxFit.cover,

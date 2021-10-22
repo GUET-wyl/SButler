@@ -77,7 +77,7 @@ class UploadPhoto extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(top: 104.h, right: 30.w),
                       child: Image.asset(
-                        'assets/left_star.png',
+                        'assets/images/left_star.png',
                         fit: BoxFit.fill,
                         width: 36.81.w,
                         height: 40.35.w,
@@ -91,7 +91,7 @@ class UploadPhoto extends StatelessWidget {
                               height: 163.w,
                               child: Center(
                                 child: Image.asset(
-                                  'assets/person.png',
+                                  'assets/images/person.png',
                                   width: 124.5.w,
                                   height: 110.07.w,
                                   fit: BoxFit.cover,
@@ -118,7 +118,7 @@ class UploadPhoto extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 133.h, left: 33.w),
                       child: Image.asset(
-                        'assets/right_star.png',
+                        'assets/images/right_star.png',
                         fit: BoxFit.fill,
                         width: 27.72.w,
                         height: 29.84.w,
