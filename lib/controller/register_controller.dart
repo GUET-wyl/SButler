@@ -1,14 +1,10 @@
-import 'dart:io';
-import 'package:SButler/common/apis.dart';
 import 'package:SButler/services/user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:dio/dio.dart' as dio;
 
 class RegisterController extends GetxController {
-  var phoneValue, pwdValue, pwd2Value, nickName, firstAvatar;
+  var phoneValue, pwdValue, pwd2Value, nickName, avatar;
   final usService = Get.find<UserInfoService>();
 
   //获取账号输入框的值
@@ -134,7 +130,7 @@ class RegisterController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0,
         );
-        await usService.register(phoneValue, pwdValue, nickName);
+        await usService.register(phoneValue, pwdValue, nickName, avatar);
       }
     } catch (e) {
       print('注册接口错误信息::$e');
@@ -179,44 +175,5 @@ class RegisterController extends GetxController {
     pwd1Focus.dispose();
     pwd2Focus.dispose();
     super.onClose();
-  }
-
-  //image_picker组件
-  var selectedImagePath = ''.obs;
-  var selectedImageSize = ''.obs;
-  void getImage(ImageSource imageSource) async {
-    final pickedFile = await ImagePicker().pickImage(source: imageSource);
-    if (pickedFile != null) {
-      selectedImagePath.value = pickedFile.path;
-      selectedImageSize.value =
-          ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
-                  .toStringAsFixed(2) +
-              "Mb";
-      uploadImg(); //上传头像的实际接口
-    } else {
-      Get.snackbar(
-        'Error',
-        'No image selected',
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    }
-  }
-
-  // 上传图片的方法
-  void uploadImg() async {
-    dio.FormData formData = dio.FormData.fromMap({
-      "file": await dio.MultipartFile.fromFile(
-        selectedImagePath.value,
-        filename: "avatar.png", //只是一个图片的格式，占位而已
-      ),
-    });
-
-    var result = await Apis.upPhoto(file: formData);
-    firstAvatar = result.avatar;
-    print('-----result.avatar------${result.avatar}');
-    //需要把result.avatar拿去把注册接口的avatar字段值给替换掉
-    Get.back();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:SButler/controller/task_controller.dart';
 import 'package:SButler/global/public.dart';
+import 'package:SButler/routes/app_pages.dart';
 import 'package:SButler/widgets/button.dart';
 import 'package:SButler/widgets/top_appbar.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:get/get.dart';
 
 class CreateTask extends StatelessWidget {
   CreateTask({Key? key}) : super(key: key);
-  // final TaskController tc = Get.put(TaskController());
+  final TaskController tc = Get.put(TaskController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,62 +18,65 @@ class CreateTask extends StatelessWidget {
           Get.back();
         },
         txt: '创建',
-        mainContent: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20.w,
-            ),
-            child: Column(
-              children: [
-                //任务名称
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 23.h,
-                    bottom: 15.h,
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/taskname.png',
-                        fit: BoxFit.cover,
-                        width: 22.w,
-                        height: 22.w,
-                      ),
-                      SizedBox(
-                        width: 2.w,
-                      ),
-                      Text(
-                        '任务名称',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'PingFang SC',
-                          color: GlobalColor.c3f,
-                        ),
-                      ),
-                    ],
-                  ),
+        mainContent: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+          ),
+          child: Column(
+            children: [
+              //任务名称
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 23.h,
+                  bottom: 15.h,
                 ),
-                Container(
-                  height: 70.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: GlobalColor.c1a,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(12.w),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/images/taskname.png',
+                      fit: BoxFit.cover,
+                      width: 22.w,
+                      height: 22.w,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Text(
+                      '任务名称',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'PingFang SC',
+                        color: GlobalColor.c3f,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 70.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                  color: GlobalColor.c1a,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(12.w),
+                  child: Container(
+                    width: 335.w,
+                    height: 70.h,
                     child: TextField(
-                      // controller: controller,
+                      controller: tc.taskTextController,
+                      focusNode: tc.taskTextFocus,
                       maxLength: 15,
                       style: TextStyle(
                         fontSize: 14.sp,
-                        color: GlobalColor.c3f,
-                        fontWeight: FontWeight.w500,
+                        color: GlobalColor.c3f.withOpacity(.2),
+                        fontWeight: FontWeight.w400,
                         fontFamily: 'PingFang SC',
                       ),
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: 12.h),
-                        hintText: '任务标题',
+                        contentPadding: EdgeInsets.only(bottom: 15.h),
+                        hintText: '请输入任务名称',
                         hintStyle: TextStyle(
                           fontSize: 14.sp,
                           color: GlobalColor.c3f.withOpacity(.2),
@@ -85,410 +89,154 @@ class CreateTask extends StatelessWidget {
                     ),
                   ),
                 ),
-                //专注时间
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 23.h,
-                    bottom: 15.h,
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/big_time.png',
-                        fit: BoxFit.cover,
-                        width: 22.w,
-                        height: 22.w,
-                      ),
-                      SizedBox(
-                        width: 2.w,
-                      ),
-                      Text(
-                        '专注时间',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'PingFang SC',
-                          color: GlobalColor.c3f,
-                        ),
-                      ),
-                    ],
-                  ),
+              ),
+              //专注时间
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 23.h,
+                  bottom: 15.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c4d6,
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 40.h,
-                          child: Center(
-                            child: Text(
-                              '0.5小时',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: GlobalColor.c3f,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'PingFang SC',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                    Image.asset(
+                      'assets/images/big_time.png',
+                      fit: BoxFit.cover,
+                      width: 22.w,
+                      height: 22.w,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c1a,
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 40.h,
-                          child: Center(
-                            child: Text(
-                              '1小时',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: GlobalColor.c3f,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'PingFang SC',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                    SizedBox(
+                      width: 2.w,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c1a,
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 40.h,
-                          child: Center(
-                            child: Text(
-                              '2小时',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: GlobalColor.c3f,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'PingFang SC',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c1a, //可变
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 40.h,
-                          child: Center(
-                            child: Text(
-                              '自定义',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: GlobalColor.c3f.withOpacity(.2),
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'PingFang SC',
-                              ),
-                            ),
-                          ),
-                        ),
+                    Text(
+                      '专注时间',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'PingFang SC',
+                        color: GlobalColor.c3f,
                       ),
                     ),
                   ],
                 ),
-                //挑战金
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 23.h,
-                    bottom: 15.h,
-                  ),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/challenge_money.png',
-                        fit: BoxFit.cover,
-                        width: 22.w,
-                        height: 22.w,
-                      ),
-                      SizedBox(
-                        width: 2.w,
-                      ),
-                      Text(
-                        '挑战金',
-                        style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'PingFang SC',
-                          color: GlobalColor.c3f,
+              ),
+              Container(
+                height: 50.h,
+                child: Obx(
+                  () => GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 7.5,
+                      childAspectRatio: 1.95,
+                    ),
+                    itemCount: tc.timeList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          tc.onItemTap(index);
+                        },
+                        child: Container(
+                          width: 78.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.r),
+                            color: tc.currentIndex == index
+                                ? GlobalColor.c4d6
+                                : GlobalColor.c3f.withOpacity(.1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              tc.timeList.elementAt(index),
+                              style: TextStyle(
+                                color: GlobalColor.c3f,
+                                fontSize: 14.sp,
+                                fontFamily: 'PingFang SC',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              ),
+              //挑战金
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 23.h,
+                  bottom: 15.h,
+                ),
+                child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c4d6,
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 42.h,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '5',
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: GlobalColor.c3f,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                '金币',
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color: GlobalColor.c3f,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    Image.asset(
+                      'assets/images/challenge_money.png',
+                      fit: BoxFit.cover,
+                      width: 22.w,
+                      height: 22.w,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c1a,
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 42.h,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '20',
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: GlobalColor.c3f,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                '金币',
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color: GlobalColor.c3f,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    SizedBox(
+                      width: 2.w,
                     ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c1a,
-                        ),
-                        child: SizedBox(
-                          width: 78.w,
-                          height: 42.h,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '88',
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: GlobalColor.c3f,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                '金币',
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  color: GlobalColor.c3f,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                    Text(
+                      '挑战金',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'PingFang SC',
+                        color: GlobalColor.c3f,
                       ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: 15.h,
-                    bottom: 100.h,
+              ),
+              Container(
+                height: 150.h,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 23,
+                    crossAxisSpacing: 30,
+                    childAspectRatio: 1.85,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            color: GlobalColor.c4d6,
-                          ),
-                          child: SizedBox(
-                            width: 78.w,
-                            height: 42.h,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '100',
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    color: GlobalColor.c3f,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'PingFang SC',
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Text(
-                                  '金币',
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: GlobalColor.c3f,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'PingFang SC',
-                                  ),
-                                ),
-                              ],
+                  itemCount: tc.moneyList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 78.w,
+                        height: 42.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6.r),
+                          color: GlobalColor.c4d6,
+                        ),
+                        child: Center(
+                          child: Text(
+                            tc.moneyList.elementAt(index),
+                            style: TextStyle(
+                              color: GlobalColor.c3f,
+                              fontSize: 14.sp,
+                              fontFamily: 'PingFang SC',
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            color: GlobalColor.c1a,
-                          ),
-                          child: SizedBox(
-                            width: 78.w,
-                            height: 42.h,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '200',
-                                  style: TextStyle(
-                                    fontSize: 20.sp,
-                                    color: GlobalColor.c3f,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'PingFang SC',
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3.w,
-                                ),
-                                Text(
-                                  '金币',
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: GlobalColor.c3f,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'PingFang SC',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.r),
-                            color: GlobalColor.c1a,
-                          ),
-                          child: SizedBox(
-                            width: 78.w,
-                            height: 42.h,
-                            child: Center(
-                              child: Text(
-                                '自定义',
-                                style: TextStyle(
-                                  fontSize: 14.sp,
-                                  color: GlobalColor.c3f.withOpacity(.2),
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'PingFang SC',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                BtnWidget(
-                  onClick: () {
-                    Get.toNamed('/finish_task');
-                    // // tc.startTask();
+                    );
                   },
-                  btnText: '创建专注',
-                  btnWidth: 192.w,
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 70.h,
+              ),
+              BtnWidget(
+                onClick: () {
+                  // tc.createTaskApi();
+                },
+                btnText: '创建专注',
+                btnWidth: 192.w,
+              ),
+            ],
           ),
         ),
       ),

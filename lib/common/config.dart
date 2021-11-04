@@ -11,7 +11,7 @@ class Config {
   static Future init(Function() runApp) async {
     WidgetsFlutterBinding.ensureInitialized();
     // 初始化缓存
-    await SpUtil.init();
+    // await SpUtil.init();
     await initService();
     HttpUtil.init();
     runApp();

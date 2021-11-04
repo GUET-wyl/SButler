@@ -1,11 +1,10 @@
-// 用户信息service
-
+// 用户信息的本地存储service
 import 'package:SButler/common/apis.dart';
-import 'package:SButler/controller/register_controller.dart';
 import 'package:SButler/global/public.dart';
 import 'package:SButler/models/login_info.dart';
 import 'package:SButler/routes/app_pages.dart';
 import 'package:SButler/services/share_prefers.dart';
+import 'package:SButler/utils/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'dart:convert' as convert;
@@ -14,8 +13,7 @@ class UserInfoService extends GetxService {
   LoginInfo? loginInfo;
   static const userInfoKey = "LocalKey_UserInfo";
   final spService = Get.find<SharePreferencesService>();
-  final RegisterController rc = Get.put(RegisterController());
-
+  var userPhoto; //用户注册流程中上传的头像
   // 获取token
   String getToken() {
     return loginInfo?.token ?? "";
@@ -48,19 +46,40 @@ class UserInfoService extends GetxService {
     return this;
   }
 
+//upload userAvatar
+  uploadUserAvatar(file) async {
+    var result = await Apis.uploadPhoto(file: file);
+    if (result != null) {
+      userPhoto = result.avatar;
+      Get.back();
+    } else {
+      Get.snackbar(
+        '',
+        '头像上传成功！',
+        duration: const Duration(seconds: 3),
+        colorText: GlobalColor.c3f,
+      );
+    }
+  }
+
   //resgister
-  register(String phoneValue, String pwdValue, String nickName) async {
+  register(
+    String phoneValue,
+    String pwdValue,
+    String nickName,
+    String? avatar,
+  ) async {
     var result = await Apis.register(
       username: phoneValue,
       password: pwdValue,
       nickname: nickName,
+      avatar: userPhoto, //这里注册接口才能拿到上传头像接口传递过来的用户头像avatar!!!
     );
-    if (result == null) {
-      //需要把result.avatar拿去把注册接口的avatar字段值给替换掉
-      loginInfo?.avatar = rc.firstAvatar;
+    if (result != null) {
       Fluttertoast.cancel();
+      loginInfo!.avatar = result.avatar;
       Get.toNamed(
-        AppRoutes.UP_PHOTO,
+        AppRoutes.LOGIN,
       );
     } else {
       Get.snackbar(
@@ -78,16 +97,36 @@ class UserInfoService extends GetxService {
       username: phoneValue,
       password: pwdValue,
     );
+    // ignore: unnecessary_null_comparison
     if (result != null) {
       Fluttertoast.cancel();
       Get.toNamed(
         AppRoutes.HOME,
       );
       loginInfo = result;
+      saveLoginInfo(loginInfo!); //存储用户信息
+      // print('---登录页存储的token值：----${result.token}');
     } else {
       Get.snackbar(
         '',
         '请先去进行注册！',
+        duration: const Duration(seconds: 3),
+        colorText: GlobalColor.c3f,
+      );
+    }
+  }
+
+  //change userAvatar
+  changeUserAvatar(file) async {
+    var result = await Apis.updatePhoto(file: file);
+    if (result != null) {
+      print('-----修改后的用户头像-------${result.avatar}');
+      loginInfo?.avatar = result.avatar;
+      Get.toNamed('/home');
+    } else {
+      Get.snackbar(
+        '',
+        '头像修改成功！',
         duration: const Duration(seconds: 3),
         colorText: GlobalColor.c3f,
       );
@@ -100,15 +139,12 @@ class UserInfoService extends GetxService {
       nickname: nickName,
     );
     if (result != null) {
-      //1、接口返回的信息中没有data字段中的avatar字段
       print('-----修改后的昵称-------$nickName');
-      //把修改后的昵称赋值给抽屉处的nickName==>重写nickName的值
       loginInfo?.nickname = nickName;
       Get.toNamed(
         AppRoutes.HOME,
       );
     } else {
-      //2、接口返回的信息中没有data字段中的avatar字段
       Get.snackbar(
         '',
         '昵称修改成功！',
@@ -118,12 +154,62 @@ class UserInfoService extends GetxService {
     }
   }
 
+  //获取用户余额
+  getUserBalance() async {
+    var result = await Apis.getBalance();
+    print('----获取用户余额-----${result["balance"]}');
+    loginInfo?.balance = result["balance"]; //真正的余额
+    if (result != null) {
+      Get.toNamed(
+        AppRoutes.MY_ACCOUNT,
+      );
+    }
+  }
+
+  //获取用户学习记录----流程能走通，目前没有任务内容
+  getUserStudyHistory() async {
+    var result = await Apis.getStudyHistory();
+    print('----获取用户学习记录-----$result');
+    //----获取用户学习记录-----{}
+    loginInfo?.balance = result["balance"]; //真正的余额
+    if (result != null) {
+      removeLocalLoginInfo();
+      Get.toNamed(
+        AppRoutes.LEARN_RECORDS,
+      );
+    }
+  }
+
+  //获取用户余额
+  getUserBalanceApi() async {
+    var result = await Apis.getBalance();
+    print('----获取用户余额-----${result["balance"]}');
+    loginInfo?.balance = result["balance"]; //真正的余额
+    if (result != null) {
+      Get.toNamed(
+        AppRoutes.MY_ACCOUNT,
+      );
+    }
+  }
+
+  //获取任务明细----流程能走通，目前没有任务内容
+  getTaskDetailsApi() async {
+    var result = await Apis.getTaskDetails();
+    print('-----获取任务明细----$result');
+    //-----获取任务明细----{tasks: []}
+    if (result != null) {
+      Get.toNamed(
+        AppRoutes.TASK_DETAILS,
+      );
+    }
+  }
+
   //logout
   logout() async {
     var result = await Apis.logout();
     if (result != null) {
       Get.toNamed(
-        AppRoutes.INDEX,
+        AppRoutes.LOGIN,
       );
     }
   }

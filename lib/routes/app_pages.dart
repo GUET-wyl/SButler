@@ -1,8 +1,8 @@
-import 'package:SButler/pages/account_details/account_details.dart';
 import 'package:SButler/pages/bad_net/bad_net.dart';
 import 'package:SButler/pages/change_avatar/change_avatar.dart';
 import 'package:SButler/pages/create_task/create_task.dart';
 import 'package:SButler/pages/fail/fail.dart';
+import 'package:SButler/pages/feedback/feedback.dart';
 import 'package:SButler/pages/finish_task/finish_task.dart';
 import 'package:SButler/pages/guide/guide.dart';
 import 'package:SButler/pages/home/home.dart';
@@ -14,10 +14,10 @@ import 'package:SButler/pages/privacy_policy/privacy_policy.dart';
 import 'package:SButler/pages/register/register.dart';
 import 'package:SButler/pages/set/set.dart';
 import 'package:SButler/pages/success/success.dart';
+import 'package:SButler/pages/task_details/task_details.dart';
 import 'package:SButler/pages/upload_photo/upload_photo.dart';
 import 'package:SButler/pages/user_agreement/user_agreement.dart';
 import 'package:SButler/widgets/dialog.dart';
-import 'package:SButler/widgets/feed_back.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -60,8 +60,8 @@ class AppPages {
       page: () => MyAccountPage(),
     ),
     GetPage(
-      name: AppRoutes.ACCOUNT_DETAILS,
-      page: () => AccountDetails(),
+      name: AppRoutes.TASK_DETAILS,
+      page: () => TaskDetails(),
     ),
     GetPage(
       name: AppRoutes.BAD_NET,

@@ -1,6 +1,5 @@
 import 'package:SButler/controller/register_controller.dart';
 import 'package:SButler/global/public.dart';
-import 'package:SButler/services/user_info.dart';
 import 'package:SButler/widgets/agreement_privacy.dart';
 import 'package:SButler/widgets/button.dart';
 import 'package:SButler/widgets/text_input.dart';
@@ -186,8 +185,7 @@ class RegisterPage extends StatelessWidget {
                 //按钮
                 BtnWidget(
                   onClick: () {
-                    print('点击了 下一步 按钮');
-                    rc.registerApi();
+                    Get.toNamed('/up_photo');
                   },
                   btnWidth: 192.w,
                   btnHeight: 46.h,

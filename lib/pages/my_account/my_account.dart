@@ -1,4 +1,5 @@
 import 'package:SButler/global/public.dart';
+import 'package:SButler/services/user_info.dart';
 import 'package:SButler/widgets/top_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +9,7 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class MyAccountPage extends StatelessWidget {
   MyAccountPage({Key? key}) : super(key: key);
-  String gold_coin = '0';
+  final uS = Get.find<UserInfoService>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,7 +20,7 @@ class MyAccountPage extends StatelessWidget {
         txt: '我的账户',
         txt2: '明细',
         onClick: () {
-          Get.toNamed('/account_details');
+          uS.getTaskDetailsApi();
         },
         mainContent: Center(
           child: Column(
@@ -46,7 +47,7 @@ class MyAccountPage extends StatelessWidget {
                 ),
               ),
               Text(
-                gold_coin,
+                '${uS.loginInfo?.balance}',
                 style: TextStyle(
                   fontSize: 58.sp,
                   fontWeight: FontWeight.bold,

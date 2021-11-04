@@ -4,6 +4,7 @@ import 'package:SButler/global/public.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'pages/feedback/feedback.dart';
 import 'routes/app_pages.dart';
 
 void main() {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('zh', 'CN'),
         getPages: AppPages.routes,
         // initialRoute: _isLogin() ? AppRoutes.HOME : AppRoutes.LOGIN,
-        initialRoute: _isLogin() ? AppRoutes.INDEX : AppRoutes.LOGIN,
+        initialRoute: _isLogin() ? AppRoutes.CREATE_TASK : AppRoutes.LOGIN,
       ),
     );
   }

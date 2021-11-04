@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-//账户明细
+//任务明细
 // ignore: must_be_immutable
-class AccountDetails extends StatelessWidget {
-  AccountDetails({Key? key}) : super(key: key);
+class TaskDetails extends StatelessWidget {
+  TaskDetails({Key? key}) : super(key: key);
   String time = '0', time2 = '0', coin = '0';
   @override
   Widget build(BuildContext context) {

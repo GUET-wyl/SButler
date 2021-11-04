@@ -1,14 +1,16 @@
+import 'dart:io';
 import 'package:SButler/controller/change_nick_controller.dart';
 import 'package:SButler/global/public.dart';
 import 'package:SButler/services/user_info.dart';
+import 'package:SButler/utils/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'dialog.dart';
 
 class DrawerWidget extends StatelessWidget {
   final uS = Get.find<UserInfoService>();
-  final ChangeNickNameController nc = Get.put(ChangeNickNameController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,16 +28,35 @@ class DrawerWidget extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: 47.w,
-                  height: 47.w,
+                  width: 50.w,
+                  height: 50.w,
                   child: Center(
-                    child: Image.network(
-                      '${uS.loginInfo?.avatar}',
-                      width: 38.w,
-                      height: 33.w,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                      child: Obx(
+                    () => selectedImagePath2.value == ''
+                        ? GestureDetector(
+                            onTap: () {
+                              changeImage(ImageSource.gallery);
+                            },
+                            child: Image.asset(
+                              'assets/images/person.png',
+                              width: 38.w,
+                              height: 33.w,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : ClipOval(
+                            child: GestureDetector(
+                            onTap: () {
+                              changeImage(ImageSource.gallery);
+                            },
+                            child: Image.network(
+                              '${uS.loginInfo!.avatar}',
+                              width: 50.w,
+                              height: 50.w,
+                              fit: BoxFit.cover,
+                            ),
+                          )),
+                  )),
                   decoration: BoxDecoration(
                     color: GlobalColor.cd5,
                     borderRadius: BorderRadius.circular(23.5.w),
@@ -62,7 +83,7 @@ class DrawerWidget extends StatelessWidget {
           ),
           _DrawerCon(
             onClick: () {
-              Get.toNamed('/my_accound');
+              uS.getUserBalanceApi();
             },
             photo: Image.asset(
               'assets/images/account.png',
@@ -74,7 +95,7 @@ class DrawerWidget extends StatelessWidget {
           ),
           _DrawerCon(
             onClick: () {
-              Get.toNamed('/learn_records');
+              uS.getUserStudyHistory();
             },
             photo: Image.asset(
               'assets/images/record.png',

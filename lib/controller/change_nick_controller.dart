@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class ChangeNickNameController extends GetxController {
   final usService = Get.find<UserInfoService>();
-  var nickName;
+  var nickName; //昵称名
   //获取昵称
   getNickNameValue() {
     nickName = nickNameController.text;

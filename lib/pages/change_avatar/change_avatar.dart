@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:SButler/controller/register_controller.dart';
 import 'package:SButler/global/public.dart';
+import 'package:SButler/utils/image_picker.dart';
 import 'package:SButler/widgets/button.dart';
 import 'package:SButler/widgets/top_appbar.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,6 @@ import 'package:image_picker/image_picker.dart';
 
 class ChangeAvatar extends StatelessWidget {
   ChangeAvatar({Key? key}) : super(key: key);
-  final RegisterController rc = Get.put(RegisterController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +28,7 @@ class ChangeAvatar extends StatelessWidget {
                 ),
                 child: //展示图片
                     Obx(
-                  () => rc.selectedImagePath.value == ''
+                  () => selectedImagePath.value == ''
                       ? Container(
                           width: 280.w,
                           height: 280.w,
@@ -44,7 +43,7 @@ class ChangeAvatar extends StatelessWidget {
                         )
                       : ClipOval(
                           child: Image.file(
-                            File(rc.selectedImagePath.value),
+                            File(selectedImagePath.value),
                             height: 280.w,
                             width: 280.w,
                             fit: BoxFit.cover,
@@ -56,7 +55,7 @@ class ChangeAvatar extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      rc.getImage(ImageSource.gallery);
+                      changeImage(ImageSource.gallery);
                     },
                     child: Btn2Widget(
                       width: 160.w,
@@ -73,7 +72,7 @@ class ChangeAvatar extends StatelessWidget {
                   ),
                   Btn2Widget(
                     onClick: () {
-                      rc.getImage(ImageSource.camera);
+                      changeImage(ImageSource.camera);
                     },
                     width: 160.w,
                     height: 36.h,

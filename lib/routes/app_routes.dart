@@ -10,7 +10,7 @@ abstract class AppRoutes {
   static const UP_PHOTO = '/up_photo';
   static const SET = '/logout';
   static const MY_ACCOUNT = '/my_accound';
-  static const ACCOUNT_DETAILS = '/account_details';
+  static const TASK_DETAILS = '/task_details';
   static const BAD_NET = '/bad_net';
   static const SUCCESS_RESULT = '/success_result';
   static const FAIL_RESULT = '/fail_result';

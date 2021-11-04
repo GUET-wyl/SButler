@@ -1,13 +1,15 @@
-import 'package:SButler/controller/register_controller.dart';
 import 'package:SButler/global/public.dart';
+import 'package:SButler/services/user_info.dart';
+import 'package:SButler/utils/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+//上传用户头像
 class BottomSheetWidget extends StatelessWidget {
   BottomSheetWidget({Key? key}) : super(key: key);
-  final RegisterController rc = Get.put(RegisterController());
+  final usService = Get.find<UserInfoService>();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -30,7 +32,7 @@ class BottomSheetWidget extends StatelessWidget {
                 //拍照上传
                 GestureDetector(
                   onTap: () {
-                    rc.getImage(ImageSource.camera);
+                    uploadImage(ImageSource.gallery);
                   },
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -56,7 +58,7 @@ class BottomSheetWidget extends StatelessWidget {
                 //从相册中选择
                 GestureDetector(
                   onTap: () {
-                    rc.getImage(ImageSource.gallery);
+                    uploadImage(ImageSource.gallery);
                   },
                   child: Padding(
                     padding: EdgeInsets.only(
