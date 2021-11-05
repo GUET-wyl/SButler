@@ -55,6 +55,7 @@ class ChangeNickNameController extends GetxController {
 //销毁控制器
   @override
   void onClose() {
+    nickNameFocus;
     nickNameController.dispose();
     super.onClose();
   }

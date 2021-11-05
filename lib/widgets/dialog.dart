@@ -1,4 +1,5 @@
 import 'package:SButler/controller/change_nick_controller.dart';
+import 'package:SButler/controller/task_controller.dart';
 import 'package:SButler/global/public.dart';
 import 'package:SButler/widgets/text_input.dart';
 import 'package:flutter/material.dart';
@@ -42,15 +43,8 @@ class DialogWidget extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             '',
-                            style: TextStyle(
-                              color: GlobalColor.c329,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'PingFang SC;',
-                              fontSize: 15.sp,
-                            ),
-                            textAlign: TextAlign.center,
                           ),
                           Row(
                             children: [
@@ -171,15 +165,8 @@ class DialogWidget1 extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             '',
-                            style: TextStyle(
-                              color: GlobalColor.c329,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'PingFang SC;',
-                              fontSize: 15.sp,
-                            ),
-                            textAlign: TextAlign.center,
                           ),
                           Row(
                             children: [
@@ -232,6 +219,248 @@ class DialogWidget1 extends StatelessWidget {
                             fontSize: 16.sp,
                           ),
                           textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 30.w,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Btn2Widget(
+                              onClick: onOk,
+                              text: '确认',
+                              width: 124.w,
+                              height: 36.h,
+                            ),
+                            BtnWidget(
+                              onClick: onCancel,
+                              btnText: '取消',
+                              btnWidth: 124.w,
+                              btnHeight: 36.h,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+//自定义专注时间
+class SelfDialog extends StatelessWidget {
+  final Function()? onOk, onCancel;
+  String? toast;
+  SelfDialog({Key? key, this.onOk, this.onCancel}) : super(key: key);
+  final TaskController tc = Get.put(TaskController());
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black12,
+        body: Center(
+          child: Container(
+              width: 329.w,
+              height: 214.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                color: GlobalColor.c330,
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    height: 45.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12.r),
+                        topRight: Radius.circular(12.r),
+                      ),
+                      color: GlobalColor.c329,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            '',
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/path.png',
+                                fit: BoxFit.cover,
+                                width: 19.w,
+                                height: 19.w,
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                '自定义专注时间',
+                                style: TextStyle(
+                                  color: GlobalColor.cfa,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'PingFang SC;',
+                                  fontSize: 15.sp,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Image.asset(
+                              'assets/images/close.png',
+                              fit: BoxFit.cover,
+                              width: 15.w,
+                              height: 15.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.h),
+                        child: InputWidget(
+                          btnBgColor: GlobalColor.c45.withOpacity(.5),
+                          hintText: '请输入自定义的时间',
+                          node: tc.taskTimeFocus,
+                          controller: tc.taskTimeController,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 30.w,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Btn2Widget(
+                              onClick: onOk,
+                              text: '确认',
+                              width: 124.w,
+                              height: 36.h,
+                            ),
+                            BtnWidget(
+                              onClick: onCancel,
+                              btnText: '取消',
+                              btnWidth: 124.w,
+                              btnHeight: 36.h,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+//自定义专注金币
+class SelfDialog1 extends StatelessWidget {
+  final Function()? onOk, onCancel;
+  String? toast;
+  SelfDialog1({Key? key, this.onOk, this.onCancel}) : super(key: key);
+  final TaskController tc = Get.put(TaskController());
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black12,
+        body: Center(
+          child: Container(
+              width: 329.w,
+              height: 214.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                color: GlobalColor.c330,
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    height: 45.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12.r),
+                        topRight: Radius.circular(12.r),
+                      ),
+                      color: GlobalColor.c329,
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            '',
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/path.png',
+                                fit: BoxFit.cover,
+                                width: 19.w,
+                                height: 19.w,
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                '自定义挑战金',
+                                style: TextStyle(
+                                  color: GlobalColor.cfa,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'PingFang SC;',
+                                  fontSize: 15.sp,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Image.asset(
+                              'assets/images/close.png',
+                              fit: BoxFit.cover,
+                              width: 15.w,
+                              height: 15.w,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 20.h),
+                        child: InputWidget(
+                          btnBgColor: GlobalColor.c45.withOpacity(.5),
+                          hintText: '请输入自定义的挑战金',
+                          node: tc.taskMoneyFocus,
+                          controller: tc.taskMoneyController,
                         ),
                       ),
                       Padding(

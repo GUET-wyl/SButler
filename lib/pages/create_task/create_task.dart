@@ -1,7 +1,7 @@
 import 'package:SButler/controller/task_controller.dart';
 import 'package:SButler/global/public.dart';
-import 'package:SButler/routes/app_pages.dart';
 import 'package:SButler/widgets/button.dart';
+import 'package:SButler/widgets/dialog.dart';
 import 'package:SButler/widgets/top_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -119,36 +119,61 @@ class CreateTask extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 50.h,
-                child: Obx(
-                  () => GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 7.5,
-                      childAspectRatio: 1.95,
-                    ),
-                    itemCount: tc.timeList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          tc.onItemTap(index);
-                        },
-                        child: Container(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 7.5,
+                    childAspectRatio: 1.95,
+                  ),
+                  itemCount: tc.timeList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        tc.onItemTap(index);
+                        tc.getTaskTime();
+                        print(tc.taskTime);
+                        if (tc.currentIndex.value == 3) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return SelfDialog(
+                                onOk: () {
+                                  print('-----tc.taskTime------${tc.taskTime}');
+                                  tc.timeList.last = tc.taskTime;
+                                  Get.back();
+                                },
+                                onCancel: () {
+                                  Get.back();
+                                },
+                              );
+                            },
+                          );
+                        }
+                        // else {
+                        //   tc.timeList[index] = tc.res;
+                        //   print(
+                        //       '-----传给后台的任务时间值（当timeList不是最后一个元素时）------${tc.res}');
+                        // }
+                      },
+                      child: Obx(
+                        () => Container(
                           width: 78.w,
                           height: 40.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.r),
-                            color: tc.currentIndex == index
+                            color: tc.currentIndex.value == index
                                 ? GlobalColor.c4d6
                                 : GlobalColor.c3f.withOpacity(.1),
                           ),
                           child: Center(
                             child: Text(
-                              tc.timeList.elementAt(index),
+                              tc.timeList.elementAt(index) + '小时', //按钮中的文字内容
                               style: TextStyle(
-                                color: GlobalColor.c3f,
+                                color: tc.currentIndex.value == index
+                                    ? GlobalColor.c3f
+                                    : GlobalColor.c3f.withOpacity(.2),
                                 fontSize: 14.sp,
                                 fontFamily: 'PingFang SC',
                                 fontWeight: FontWeight.w600,
@@ -156,9 +181,9 @@ class CreateTask extends StatelessWidget {
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
               //挑战金
@@ -190,7 +215,7 @@ class CreateTask extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 150.h,
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -200,24 +225,51 @@ class CreateTask extends StatelessWidget {
                     childAspectRatio: 1.85,
                   ),
                   itemCount: tc.moneyList.length,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (BuildContext context, int idx) {
                     return GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        width: 78.w,
-                        height: 42.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: GlobalColor.c4d6,
-                        ),
-                        child: Center(
-                          child: Text(
-                            tc.moneyList.elementAt(index),
-                            style: TextStyle(
-                              color: GlobalColor.c3f,
-                              fontSize: 14.sp,
-                              fontFamily: 'PingFang SC',
-                              fontWeight: FontWeight.w600,
+                      onTap: () {
+                        tc.toggleMoney(idx);
+                        tc.getTaskMoney();
+                        print(tc.taskMoney);
+                        if (tc.crtIndex.value ==
+                            tc.moneyList.asMap().keys.last) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return SelfDialog1(
+                                onOk: () {
+                                  tc.moneyList.last = tc.taskMoney;
+                                  Get.back();
+                                },
+                                onCancel: () {
+                                  Get.back();
+                                },
+                              );
+                            },
+                          );
+                        }
+                      },
+                      child: Obx(
+                        () => Container(
+                          width: 78.w,
+                          height: 42.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6.r),
+                            color: tc.crtIndex.value == idx
+                                ? GlobalColor.c4d6
+                                : GlobalColor.c3f.withOpacity(.1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              tc.moneyList.elementAt(idx) + '金币',
+                              style: TextStyle(
+                                color: tc.crtIndex.value == idx
+                                    ? GlobalColor.c3f
+                                    : GlobalColor.c3f.withOpacity(.2),
+                                fontSize: 14.sp,
+                                fontFamily: 'PingFang SC',
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
@@ -232,6 +284,9 @@ class CreateTask extends StatelessWidget {
               BtnWidget(
                 onClick: () {
                   // tc.createTaskApi();
+                  tc.getTaskText();
+                  tc.getTaskTime();
+                  tc.getTaskMoney();
                 },
                 btnText: '创建专注',
                 btnWidth: 192.w,
