@@ -16,4 +16,5 @@ class GlobalColor {
   static const c45 = Color(0xff454545);
   static const dividColor = Color(0xff404142);
   static const c32 = Color(0xff222222);
+  static const c39 = Color(0xff999999);
 }

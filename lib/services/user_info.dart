@@ -4,7 +4,6 @@ import 'package:SButler/global/public.dart';
 import 'package:SButler/models/login_info.dart';
 import 'package:SButler/routes/app_pages.dart';
 import 'package:SButler/services/share_prefers.dart';
-import 'package:SButler/utils/image_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'dart:convert' as convert;
@@ -36,7 +35,7 @@ class UserInfoService extends GetxService {
   }
 
   //删本地info
-  LoginInfo? removeLocalLoginInfo() {
+  LoginInfo? removeLocalLoginInfo(String? token) {
     spService.prefs.remove((userInfoKey));
   }
 
@@ -77,6 +76,7 @@ class UserInfoService extends GetxService {
     );
     if (result != null) {
       Fluttertoast.cancel();
+      print('---注册头像字段-----${result.avatar}');
       loginInfo!.avatar = result.avatar;
       Get.toNamed(
         AppRoutes.LOGIN,
@@ -105,7 +105,7 @@ class UserInfoService extends GetxService {
       );
       loginInfo = result;
       saveLoginInfo(loginInfo!); //存储用户信息
-      // print('---登录页存储的token值：----${result.token}');
+      print('---登录页存储的token值：----${result.token}');
     } else {
       Get.snackbar(
         '',
@@ -154,6 +154,24 @@ class UserInfoService extends GetxService {
     }
   }
 
+//创建任务api
+  void createTask(String taskName, int res1, int res2) async {
+    var result = await Apis.createTask(
+      task_name: taskName,
+      task_duration: res1,
+      amount: res2,
+    );
+    if (result != null) {
+      print('----------创建任务api---------$result');
+      loginInfo?.task_name = taskName;
+      loginInfo?.task_duration = res1;
+      loginInfo?.amount = res2;
+      Get.toNamed(
+        AppRoutes.FINISH_TASK,
+      );
+    }
+  }
+
   //获取用户余额
   getUserBalance() async {
     var result = await Apis.getBalance();
@@ -173,7 +191,6 @@ class UserInfoService extends GetxService {
     //----获取用户学习记录-----{}
     loginInfo?.balance = result["balance"]; //真正的余额
     if (result != null) {
-      removeLocalLoginInfo();
       Get.toNamed(
         AppRoutes.LEARN_RECORDS,
       );
@@ -204,11 +221,18 @@ class UserInfoService extends GetxService {
     }
   }
 
-  //logout
+  //退出登录
   logout() async {
-    var result = await Apis.logout();
-    if (result != null) {
-      Get.toNamed(
+    try {
+      var result = await Apis.logout();
+      if (result != null) {
+        removeLocalLoginInfo(loginInfo!.token); //删除用户的token
+        Get.offAllNamed(
+          AppRoutes.LOGIN,
+        );
+      }
+    } catch (e) {
+      Get.offAllNamed(
         AppRoutes.LOGIN,
       );
     }

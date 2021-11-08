@@ -33,29 +33,20 @@ class DrawerWidget extends StatelessWidget {
                   child: Center(
                       child: Obx(
                     () => selectedImagePath2.value == ''
-                        ? GestureDetector(
-                            onTap: () {
-                              changeImage(ImageSource.gallery);
-                            },
-                            child: Image.asset(
-                              'assets/images/person.png',
-                              width: 38.w,
-                              height: 33.w,
-                              fit: BoxFit.cover,
-                            ),
+                        ? Image.asset(
+                            'assets/images/person.png',
+                            width: 38.w,
+                            height: 33.w,
+                            fit: BoxFit.cover,
                           )
                         : ClipOval(
-                            child: GestureDetector(
-                            onTap: () {
-                              changeImage(ImageSource.gallery);
-                            },
                             child: Image.network(
                               '${uS.loginInfo!.avatar}',
                               width: 50.w,
                               height: 50.w,
                               fit: BoxFit.cover,
                             ),
-                          )),
+                          ),
                   )),
                   decoration: BoxDecoration(
                     color: GlobalColor.cd5,

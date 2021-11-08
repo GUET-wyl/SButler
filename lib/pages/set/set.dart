@@ -1,4 +1,4 @@
-import 'package:SButler/controller/set_controller.dart';
+import 'package:SButler/controller/logout_controller.dart';
 import 'package:SButler/widgets/button.dart';
 import 'package:SButler/widgets/dialog.dart';
 import 'package:SButler/widgets/top_appbar.dart';
@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 class SetPage extends StatelessWidget {
   SetPage({Key? key}) : super(key: key);
-  final SetController sc = Get.put(SetController());
+  final LogoutController sc = Get.put(LogoutController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,8 +31,6 @@ class SetPage extends StatelessWidget {
                       toast: '确定要退出登录吗？',
                       onOk: () {
                         sc.logoutApi();
-                        // Get.back();
-                        Get.toNamed('/index');
                       },
                       onCancel: () {
                         Get.back();

@@ -1,3 +1,4 @@
+import 'package:SButler/global/public.dart';
 import 'package:SButler/services/user_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -77,22 +78,31 @@ class FeedBackController extends GetxController {
   //创建反馈
   Future createFeeds() async {
     getFeedText();
-    Fluttertoast.showToast(
-      msg: "意见反馈正在提交中...",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 3,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0,
-    );
-    var res = await Apis.createFeedBack(
-      info: feedText,
-      image_url: imgfiles,
-    );
-    if (res == null) {
-      Fluttertoast.cancel();
-      Get.back();
+    if (feedText == '') {
+      Get.snackbar(
+        '注意哟',
+        '反馈内容不能为空！',
+        colorText: GlobalColor.cfa.withOpacity(.8),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "意见反馈正在提交中...",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      var res = await Apis.createFeedBack(
+        info: feedText,
+        image_url: imgfiles,
+      );
+      if (res == null) {
+        Fluttertoast.cancel();
+        Get.back();
+      }
     }
   }
 

@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         locale: const Locale('zh', 'CN'),
         getPages: AppPages.routes,
         // initialRoute: _isLogin() ? AppRoutes.HOME : AppRoutes.LOGIN,
-        initialRoute: _isLogin() ? AppRoutes.CREATE_TASK : AppRoutes.LOGIN,
+        initialRoute: _isLogin() ? AppRoutes.INDEX : AppRoutes.LOGIN,
       ),
     );
   }

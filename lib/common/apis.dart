@@ -1,9 +1,7 @@
 //前端实际传的参数
 import 'dart:convert';
 import 'package:SButler/common/urls.dart';
-import 'package:SButler/models/create_task_info.dart';
 import 'package:SButler/models/login_info.dart';
-import 'package:SButler/models/upload_avatar.dart';
 import 'package:SButler/utils/http_util.dart';
 
 class ErrorCode {
@@ -13,19 +11,27 @@ class ErrorCode {
 
 class Apis {
   //上传头像
-  static Future<UploadAvatar> uploadPhoto({
+  static Future<LoginInfo> uploadPhoto({
     required file,
   }) {
     return HttpUtil.post(
       Urls.uploadAvatar,
       data: file,
     ).then((value) {
-      return UploadAvatar.fromJson(value);
-    }).catchError((e) => print("上传头像接口处的信息:$e"));
+      print('-----上传头像处的value--------$value');
+      try {
+        LoginInfo.fromJson(value);
+      } catch (e) {
+        print('-----上传头像处的Error--------');
+      }
+      return LoginInfo.fromJson(value);
+    }).catchError(
+      (e) => print("上传头像接口处的错误信息:$e"),
+    );
   }
 
   //注册
-  static Future<UploadAvatar> register({
+  static Future<LoginInfo> register({
     required String username,
     required String password,
     required String nickname,
@@ -40,8 +46,16 @@ class Apis {
         "avatar": avatar,
       },
     ).then((value) {
-      return UploadAvatar.fromJson(value);
-    }).catchError((e) => print("注册接口处的信息:$e"));
+      print('-----注册的value--------$value');
+      try {
+        LoginInfo.fromJson(value);
+      } catch (e) {
+        print('-----注册的Error--------');
+      }
+      return LoginInfo.fromJson(value);
+    }).catchError(
+      (e) => print("注册接口处的错误信息:$e"),
+    );
   }
 
   //登录
@@ -60,7 +74,9 @@ class Apis {
       var res = json.encode(value);
       print('----res的内容---${json.encode(value)}');
       return LoginInfo.fromJson(value);
-    }).catchError((e) => print("登录接口处的信息:$e"));
+    }).catchError(
+      (e) => print("登录接口处的信息:$e"),
+    );
   }
 
   //退出登录
@@ -114,7 +130,7 @@ class Apis {
   }
 
   //创建任务
-  static Future<CreateTaskInfo> createTask({
+  static Future<LoginInfo> createTask({
     required String task_name,
     required int task_duration,
     required int amount,
@@ -129,7 +145,7 @@ class Apis {
     ).then((value) {
       //value是整个接口返回的内容
       print('----value的内容---${json.encode(value)}');
-      return CreateTaskInfo.fromJson(value);
+      return LoginInfo.fromJson(value);
     }).catchError((e) => print("创建任务接口处的信息:$e"));
   }
 

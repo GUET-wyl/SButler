@@ -55,10 +55,15 @@ class HttpUtil {
     required Map<String, dynamic> header,
   }) {
     header['Content-Type'] = "application/json; charset=utf-8";
-    final usService = Get.find<UserInfoService>();
-    var token = usService.getToken();
-    print('---------token:$token---------------');
-    header['Authorization'] = token;
+    try {
+      final usService = Get.find<UserInfoService>();
+      var token = usService.getToken();
+      print('---------token:$token---------------');
+      header['Authorization'] = token;
+    } catch (_) {
+      print("获取Token失败");
+    }
+
     return header;
   }
 

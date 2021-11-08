@@ -1,8 +1,10 @@
 import 'package:SButler/common/apis.dart';
+import 'package:SButler/global/color.dart';
 import 'package:SButler/routes/app_pages.dart';
 import 'package:SButler/services/user_info.dart';
 import 'package:SButler/widgets/dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 
@@ -14,7 +16,8 @@ class TaskController extends GetxController {
   var taskName; //任务名称
   var taskTime; //任务时间
   var taskMoney; //任务金额
-  var res; //传给后台的任务时间值（当timeList不是最后一个元素时）
+  String res1 = '0.5'; //传给后台的任务时间值（当timeList不是最后一个元素时）
+  int res2 = 5; //传给后台的任务金币值（当moneyList不是最后一个元素时）
   //文本控制器
   TextEditingController taskTextController = TextEditingController();
   TextEditingController taskTimeController = TextEditingController();
@@ -29,14 +32,24 @@ class TaskController extends GetxController {
     print('任务名称为:$taskName');
   }
 
-  //获取自定义的任务时间
+  //获取任务时间
   getTaskTime() {
+    print('-----任务时间为:----$res1');
+  }
+
+  //获取任务金币
+  getTaskMoney() {
+    print('-----任务金币为:------$res2');
+  }
+
+  //获取自定义的任务时间
+  getSelfTaskTime() {
     taskTime = taskTimeController.text;
     print('自定义的任务时间为:$taskTime');
   }
 
   //获取自定义的任务金额
-  getTaskMoney() {
+  getSelfTaskMoney() {
     taskMoney = taskMoneyController.text;
     print('自定义的任务金币为:$taskMoney');
   }
@@ -68,10 +81,22 @@ class TaskController extends GetxController {
     // }
   }
 
-  //创建任务
-  // void createTaskApi() async {
-  //   await usService.createTask(taskName, taskTime, taskAmount);
-  // }
+  //创建任务api
+  void createTaskApi() {
+    getTaskText();
+    getTaskTime();
+    getTaskMoney();
+    if (taskName == '') {
+      return Get.snackbar(
+        '注意哟',
+        '任务名称不能为空！',
+        colorText: GlobalColor.c4d6,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    } else {
+      usService.createTask(taskName, int.parse(res1), res2);
+    }
+  }
 
   //结束任务
   // void finishTaskApi(String id) async {

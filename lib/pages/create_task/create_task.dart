@@ -131,17 +131,17 @@ class CreateTask extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        tc.onItemTap(index);
-                        tc.getTaskTime();
-                        print(tc.taskTime);
-                        if (tc.currentIndex.value == 3) {
+                        tc.onItemTap(index); //切换按钮背景色
+                        if (tc.currentIndex.value ==
+                            tc.timeList.asMap().keys.last) {
+                          //点击的是自定义的按钮
                           showDialog(
                             context: context,
                             builder: (context) {
                               return SelfDialog(
                                 onOk: () {
-                                  print('-----tc.taskTime------${tc.taskTime}');
-                                  tc.timeList.last = tc.taskTime;
+                                  tc.timeList[3] = tc.taskTime;
+                                  tc.res1 = tc.timeList[3];
                                   Get.back();
                                 },
                                 onCancel: () {
@@ -150,12 +150,10 @@ class CreateTask extends StatelessWidget {
                               );
                             },
                           );
+                        } else {
+                          //点击的是非自定义按钮
+                          tc.res1 = tc.timeList[index];
                         }
-                        // else {
-                        //   tc.timeList[index] = tc.res;
-                        //   print(
-                        //       '-----传给后台的任务时间值（当timeList不是最后一个元素时）------${tc.res}');
-                        // }
                       },
                       child: Obx(
                         () => Container(
@@ -229,8 +227,6 @@ class CreateTask extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         tc.toggleMoney(idx);
-                        tc.getTaskMoney();
-                        print(tc.taskMoney);
                         if (tc.crtIndex.value ==
                             tc.moneyList.asMap().keys.last) {
                           showDialog(
@@ -239,6 +235,7 @@ class CreateTask extends StatelessWidget {
                               return SelfDialog1(
                                 onOk: () {
                                   tc.moneyList.last = tc.taskMoney;
+                                  tc.res2 = int.parse(tc.moneyList.last);
                                   Get.back();
                                 },
                                 onCancel: () {
@@ -247,6 +244,9 @@ class CreateTask extends StatelessWidget {
                               );
                             },
                           );
+                        } else {
+                          //点击的是非自定义按钮
+                          tc.res2 = int.parse(tc.moneyList[idx]);
                         }
                       },
                       child: Obx(
@@ -283,10 +283,7 @@ class CreateTask extends StatelessWidget {
               ),
               BtnWidget(
                 onClick: () {
-                  // tc.createTaskApi();
-                  tc.getTaskText();
-                  tc.getTaskTime();
-                  tc.getTaskMoney();
+                  tc.createTaskApi();
                 },
                 btnText: '创建专注',
                 btnWidth: 192.w,
