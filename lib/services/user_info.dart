@@ -223,15 +223,9 @@ class UserInfoService extends GetxService {
 
   //退出登录
   logout() async {
-    try {
-      var result = await Apis.logout();
-      if (result != null) {
-        removeLocalLoginInfo(loginInfo!.token); //删除用户的token
-        Get.offAllNamed(
-          AppRoutes.LOGIN,
-        );
-      }
-    } catch (e) {
+    var result = await Apis.logout();
+    if (result == null) {
+      removeLocalLoginInfo(loginInfo!.token); //删除用户的token
       Get.offAllNamed(
         AppRoutes.LOGIN,
       );

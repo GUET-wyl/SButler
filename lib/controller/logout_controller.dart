@@ -5,6 +5,5 @@ class LogoutController extends GetxController {
   final usService = Get.find<UserInfoService>();
   Future logoutApi() async {
     await usService.logout();
-    Get.back();
   }
 }

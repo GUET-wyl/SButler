@@ -1,3 +1,4 @@
+import 'package:SButler/global/public.dart';
 import 'package:SButler/services/user_info.dart';
 import 'package:SButler/widgets/toast.dart';
 import 'package:flutter/material.dart';
@@ -109,6 +110,24 @@ class RegisterController extends GetxController {
     }
   }
 
+  //跳转到上传头像的页面
+  void toUpPhotoPage() {
+    if (RegExp(regPhone).hasMatch(phoneController.text) &&
+        RegExp(regNickName).hasMatch(nickNameController.text) &&
+        RegExp(regPwd1).hasMatch(pwd1Controller.text) &&
+        RegExp(regPwd2).hasMatch(pwd2Controller.text) &&
+        pwd1Controller.text == pwd2Controller.text) {
+      Get.toNamed('/up_photo');
+    } else {
+      Get.snackbar(
+        '注意哟',
+        '请输入注册信息',
+        colorText: GlobalColor.c4d6,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   //注册按钮
   Future registerApi() async {
     try {
@@ -116,18 +135,12 @@ class RegisterController extends GetxController {
       getPwdValue();
       getPwd2Value();
       getNickValue();
-      if (RegExp(regPhone).hasMatch(phoneController.text) &&
-          RegExp(regNickName).hasMatch(nickNameController.text) &&
-          RegExp(regPwd1).hasMatch(pwd1Controller.text) &&
-          RegExp(regPwd2).hasMatch(pwd2Controller.text) &&
-          pwd1Controller.text == pwd2Controller.text) {
-        //开启轻提示toast
-        toastInfo(
-          msg: 'register...',
-          location: ToastGravity.BOTTOM,
-        );
-        await usService.register(phoneValue, pwdValue, nickName, avatar);
-      }
+      //开启轻提示toast
+      toastInfo(
+        msg: 'register...',
+        location: ToastGravity.BOTTOM,
+      );
+      await usService.register(phoneValue, pwdValue, nickName, avatar);
     } catch (e) {
       print('注册接口错误信息::$e');
     }

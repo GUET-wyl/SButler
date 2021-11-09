@@ -185,7 +185,7 @@ class RegisterPage extends StatelessWidget {
                 //按钮
                 BtnWidget(
                   onClick: () {
-                    Get.toNamed('/up_photo');
+                    rc.toUpPhotoPage();
                   },
                   btnWidth: 192.w,
                   btnHeight: 46.h,
