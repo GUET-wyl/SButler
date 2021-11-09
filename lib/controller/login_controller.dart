@@ -1,4 +1,5 @@
 import 'package:SButler/services/user_info.dart';
+import 'package:SButler/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -67,14 +68,9 @@ class LoginController extends GetxController {
       if (RegExp(regPhone).hasMatch(phoneController.text) &&
           RegExp(regPassword).hasMatch(pwdController.text)) {
         //开启轻提示toast
-        Fluttertoast.showToast(
-          msg: "login...",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 3,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0,
+        toastInfo(
+          msg: 'logins...',
+          location: ToastGravity.BOTTOM,
         );
         await usService.login(phoneValue, pwdValue);
       }

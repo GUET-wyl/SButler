@@ -1,5 +1,6 @@
 import 'package:SButler/global/public.dart';
 import 'package:SButler/services/user_info.dart';
+import 'package:SButler/widgets/toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -86,14 +87,9 @@ class FeedBackController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     } else {
-      Fluttertoast.showToast(
-        msg: "意见反馈正在提交中...",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0,
+      toastInfo(
+        msg: '意见反馈正在提交中...',
+        location: ToastGravity.BOTTOM,
       );
       var res = await Apis.createFeedBack(
         info: feedText,

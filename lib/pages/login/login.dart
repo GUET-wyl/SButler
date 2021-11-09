@@ -107,7 +107,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 22.h,
+                    height: 10.h,
                   ),
                   //密码
                   Input1Widget(
@@ -130,20 +130,20 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 116.h,
-                  ),
                   //按钮
-                  BtnWidget(
-                    onClick: () {
-                      lc.loginApi();
-                    },
-                    btnText: '进入星球',
-                    btnWidth: 192.w,
-                    btnHeight: 46.h,
-                  ),
-                  SizedBox(
-                    height: 120.h,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 116.h,
+                      bottom: 120.h,
+                    ),
+                    child: BtnWidget(
+                      onClick: () {
+                        lc.loginApi();
+                      },
+                      btnText: '进入星球',
+                      btnWidth: 192.w,
+                      btnHeight: 46.h,
+                    ),
                   ),
                   const AgreementAndPrivacy(),
                 ],

@@ -109,7 +109,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 22.h,
+                  height: 10.h,
                 ),
                 //昵称
                 InputWidget(
@@ -132,7 +132,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 22.h,
+                  height: 10.h,
                 ),
                 //密码
                 Input2Widget(
@@ -156,7 +156,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 22.h,
+                  height: 10.h,
                 ),
                 //再次输入密码
                 Input3Widget(

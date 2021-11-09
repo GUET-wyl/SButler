@@ -1,4 +1,5 @@
 import 'package:SButler/services/user_info.dart';
+import 'package:SButler/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -82,7 +83,7 @@ class RegisterController extends GetxController {
     if (nickNameController.text == '') {
       nickNameErrorText.value = '昵称不能为空!';
     } else if (!RegExp(regNickName).hasMatch(nickNameController.text)) {
-      nickNameErrorText.value = '请输入1到10位的中英文昵称!';
+      nickNameErrorText.value = '请输入1到6位的中英文昵称!';
     } else {
       nickNameErrorText.value = '';
     }
@@ -121,14 +122,9 @@ class RegisterController extends GetxController {
           RegExp(regPwd2).hasMatch(pwd2Controller.text) &&
           pwd1Controller.text == pwd2Controller.text) {
         //开启轻提示toast
-        Fluttertoast.showToast(
-          msg: "register...",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 3,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0,
+        toastInfo(
+          msg: 'register...',
+          location: ToastGravity.BOTTOM,
         );
         await usService.register(phoneValue, pwdValue, nickName, avatar);
       }

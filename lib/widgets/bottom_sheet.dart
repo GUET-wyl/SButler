@@ -18,7 +18,6 @@ class BottomSheetWidget extends StatelessWidget {
           left: 0.w,
           right: 0.w,
           bottom: 0.w,
-          height: 164.w,
           child: Container(
             decoration: BoxDecoration(
               color: GlobalColor.c3f,
