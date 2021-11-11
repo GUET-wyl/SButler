@@ -334,12 +334,24 @@ class SelfDialog extends StatelessWidget {
                   Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.h),
+                        padding: EdgeInsets.only(top: 20.h),
                         child: InputWidget(
                           btnBgColor: GlobalColor.c45.withOpacity(.5),
                           hintText: '请输入自定义的时间',
                           node: tc.taskTimeFocus,
                           controller: tc.taskTimeController,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        child: Obx(
+                          () => Text(
+                            '${tc.timeErrorText}',
+                            style: TextStyle(
+                              color: GlobalColor.c3f,
+                              fontSize: 14.sp,
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
@@ -455,12 +467,24 @@ class SelfDialog1 extends StatelessWidget {
                   Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.h),
+                        padding: EdgeInsets.only(top: 20.h),
                         child: InputWidget(
                           btnBgColor: GlobalColor.c45.withOpacity(.5),
                           hintText: '请输入自定义的挑战金',
                           node: tc.taskMoneyFocus,
                           controller: tc.taskMoneyController,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        child: Obx(
+                          () => Text(
+                            '${tc.moneyErrorText}',
+                            style: TextStyle(
+                              color: GlobalColor.c3f,
+                              fontSize: 14.sp,
+                            ),
+                          ),
                         ),
                       ),
                       Padding(

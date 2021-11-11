@@ -45,9 +45,12 @@ class UserInfoService extends GetxService {
     return this;
   }
 
-//upload userAvatar
+//上传用户头像
   uploadUserAvatar(file) async {
     var result = await Apis.uploadPhoto(file: file);
+    // ignore: unnecessary_null_comparison
+    print('---上传用户头像的avatar字段:-----${result.avatar}');
+    //---上传用户头像的avatar字段:-----https://earth-angel-1302656840.cos.ap-chengdu.myqcloud.com/sbutler/avatar/a7e6bd0b421611ecb7441cbfce5cf6a8.png
     if (result != null) {
       userPhoto = result.avatar;
       Get.back();
@@ -61,7 +64,7 @@ class UserInfoService extends GetxService {
     }
   }
 
-  //resgister
+  //注册
   register(
     String phoneValue,
     String pwdValue,
@@ -74,10 +77,12 @@ class UserInfoService extends GetxService {
       nickname: nickName,
       avatar: userPhoto, //这里注册接口才能拿到上传头像接口传递过来的用户头像avatar!!!
     );
+    // ignore: unnecessary_null_comparison
     if (result != null) {
       Fluttertoast.cancel();
-      print('---注册头像字段-----${result.avatar}');
-      loginInfo!.avatar = result.avatar;
+      print('---注册的avatar字段:-----${result.avatar}');
+      //---注册的avatar字段:-----https://earth-angel-1302656840.cos.ap-chengdu.myqcloud.com/sbutler/avatar/a7e6bd0b421611ecb7441cbfce5cf6a8.png
+      loginInfo?.avatar = result.avatar;
       Get.toNamed(
         AppRoutes.LOGIN,
       );
@@ -91,7 +96,7 @@ class UserInfoService extends GetxService {
     }
   }
 
-  //login
+  //登录
   login(String phoneValue, String pwdValue) async {
     LoginInfo result = await Apis.login(
       username: phoneValue,
@@ -104,6 +109,8 @@ class UserInfoService extends GetxService {
         AppRoutes.HOME,
       );
       loginInfo = result;
+      print('---登录页存储的avatar值：----${result.avatar}');
+      //---登录页存储的avatar值：----https://earth-angel-1302656840.cos.ap-chengdu.myqcloud.com/sbutler/avatar/0cf9ff3a421711ecb7441cbfce5cf6a8.png
       saveLoginInfo(loginInfo!); //存储用户信息
       print('---登录页存储的token值：----${result.token}');
     } else {
@@ -116,9 +123,10 @@ class UserInfoService extends GetxService {
     }
   }
 
-  //change userAvatar
+  //修改用户头像
   changeUserAvatar(file) async {
     var result = await Apis.updatePhoto(file: file);
+    // ignore: unnecessary_null_comparison
     if (result != null) {
       print('-----修改后的用户头像-------${result.avatar}');
       loginInfo?.avatar = result.avatar;
@@ -133,7 +141,7 @@ class UserInfoService extends GetxService {
     }
   }
 
-//change nickname
+//修改用户昵称
   changeNickName(String nickName) async {
     var result = await Apis.changeNickname(
       nickname: nickName,
@@ -154,18 +162,19 @@ class UserInfoService extends GetxService {
     }
   }
 
-//创建任务api
-  void createTask(String taskName, int res1, int res2) async {
+//创建任务
+  void createTask(String taskName, String res1, int res2) async {
     var result = await Apis.createTask(
       task_name: taskName,
       task_duration: res1,
       amount: res2,
     );
+    // ignore: unnecessary_null_comparison
     if (result != null) {
       print('----------创建任务api---------$result');
-      loginInfo?.task_name = taskName;
-      loginInfo?.task_duration = res1;
-      loginInfo?.amount = res2;
+      // loginInfo?.task_name = taskName;
+      // loginInfo?.task_duration = res1;
+      // loginInfo?.amount = res2;
       Get.toNamed(
         AppRoutes.FINISH_TASK,
       );
@@ -175,8 +184,8 @@ class UserInfoService extends GetxService {
   //获取用户余额
   getUserBalance() async {
     var result = await Apis.getBalance();
-    print('----获取用户余额-----${result["balance"]}');
-    loginInfo?.balance = result["balance"]; //真正的余额
+    // print('----获取用户余额-----${result["balance"]}');
+    // loginInfo?.balance = result["balance"]; //真正的余额
     if (result != null) {
       Get.toNamed(
         AppRoutes.MY_ACCOUNT,
@@ -189,7 +198,7 @@ class UserInfoService extends GetxService {
     var result = await Apis.getStudyHistory();
     print('----获取用户学习记录-----$result');
     //----获取用户学习记录-----{}
-    loginInfo?.balance = result["balance"]; //真正的余额
+    // loginInfo?.balance = result["balance"]; //真正的余额
     if (result != null) {
       Get.toNamed(
         AppRoutes.LEARN_RECORDS,
@@ -200,8 +209,8 @@ class UserInfoService extends GetxService {
   //获取用户余额
   getUserBalanceApi() async {
     var result = await Apis.getBalance();
-    print('----获取用户余额-----${result["balance"]}');
-    loginInfo?.balance = result["balance"]; //真正的余额
+    // print('----获取用户余额-----${result["balance"]}');
+    // loginInfo?.balance = result["balance"]; //真正的余额
     if (result != null) {
       Get.toNamed(
         AppRoutes.MY_ACCOUNT,

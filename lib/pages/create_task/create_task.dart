@@ -140,9 +140,15 @@ class CreateTask extends StatelessWidget {
                             builder: (context) {
                               return SelfDialog(
                                 onOk: () {
-                                  tc.timeList[3] = tc.taskTime;
-                                  tc.res1 = tc.timeList[3];
-                                  Get.back();
+                                  tc.rexTime();
+                                  tc.getSelfTaskTime();
+                                  if (tc.taskTime != null &&
+                                      RegExp(TaskController.regTime)
+                                          .hasMatch(tc.taskTime)) {
+                                    tc.timeList.last = tc.taskTime;
+                                    tc.res1 = tc.timeList.last;
+                                    Get.back();
+                                  }
                                 },
                                 onCancel: () {
                                   Get.back();
@@ -153,6 +159,7 @@ class CreateTask extends StatelessWidget {
                         } else {
                           //点击的是非自定义按钮
                           tc.res1 = tc.timeList[index];
+                          print('------非自定义按钮--------${tc.timeList[index]}');
                         }
                       },
                       child: Obx(
@@ -234,9 +241,14 @@ class CreateTask extends StatelessWidget {
                             builder: (context) {
                               return SelfDialog1(
                                 onOk: () {
-                                  tc.moneyList.last = tc.taskMoney;
-                                  tc.res2 = int.parse(tc.moneyList.last);
-                                  Get.back();
+                                  tc.getSelfTaskMoney();
+                                  tc.rexMoney();
+                                  if (RegExp(TaskController.regMoney)
+                                      .hasMatch(tc.taskMoney)) {
+                                    tc.moneyList.last = tc.taskMoney;
+                                    tc.res2 = int.parse(tc.moneyList.last);
+                                    Get.back();
+                                  }
                                 },
                                 onCancel: () {
                                   Get.back();

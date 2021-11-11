@@ -24,12 +24,13 @@ class DrawerWidget extends StatelessWidget {
             ),
             child: Row(
               children: [
+                //显示用户头像
                 Container(
                   width: 50.w,
                   height: 50.w,
                   child: Center(
                       child: Obx(
-                    () => selectedImagePath2.value == ''
+                    () => selectedImagePath.value == ''
                         ? Image.asset(
                             'assets/images/person.png',
                             width: 38.w,
@@ -38,7 +39,7 @@ class DrawerWidget extends StatelessWidget {
                           )
                         : ClipOval(
                             child: Image.network(
-                              '${uS.loginInfo!.avatar}',
+                              '${uS.loginInfo?.avatar}',
                               width: 50.w,
                               height: 50.w,
                               fit: BoxFit.cover,
@@ -57,6 +58,7 @@ class DrawerWidget extends StatelessWidget {
                 SizedBox(
                   width: 13.w,
                 ),
+                //显示用户昵称
                 Text(
                   '${uS.loginInfo?.nickname}',
                   style: TextStyle(

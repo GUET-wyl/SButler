@@ -54,7 +54,11 @@ class TaskController extends GetxController {
     print('自定义的任务金币为:$taskMoney');
   }
 
+  //2、任务时间
   var currentIndex = 0.obs; //当前选中的任务时间按钮对象的下标
+  var timeErrorText = ''.obs; //自定义的任务时间的错误提示文本
+  //正则表达式
+  static const regTime = r"^0\.[5-9]$|^[1-2]\.\d$|^[1-3]$"; //验证0.5-3小时的任务时间
   List<String> timeList = [
     '0.5',
     '1',
@@ -68,17 +72,38 @@ class TaskController extends GetxController {
     }
   }
 
+  //非空判断、错误文本提示
+  void rexTime() {
+    if (taskTime == null) {
+      timeErrorText.value = '自定义的专注时间不能为空!';
+    } else if (!RegExp(regTime).hasMatch(taskTime)) {
+      timeErrorText.value = '请输入0.5到3的专注时间';
+    } else {
+      timeErrorText.value = '';
+    }
+  }
+
   //3、任务金额
   var crtIndex = 0.obs; //当前选中的任务金额按钮对象的下标
+  var moneyErrorText = ''.obs; //自定义的任务金额的错误提示文本
+  //正则表达式
+  static const regMoney =
+      r"^[5-9]$|^[1-4]\d\d$|^500$|^[1-9]\d$"; //验证5-500金币的任务金币
   List<String> moneyList = ['5', '20', '88', '100', '200', '自定义'].obs;
   //点击切换不同的任务金额按钮
   toggleMoney(int idx) {
     if (crtIndex.value != idx) {
       crtIndex.value = idx;
     }
-    // if (moneyList.elementAt(idx) == '自定义') {
-    //   return Dialog();
-    // }
+  }
+
+  //错误文本提示
+  void rexMoney() {
+    if (!RegExp(regMoney).hasMatch(taskMoney)) {
+      moneyErrorText.value = '请输入5到500的挑战金';
+    } else {
+      moneyErrorText.value = '';
+    }
   }
 
   //创建任务api
@@ -86,6 +111,8 @@ class TaskController extends GetxController {
     getTaskText();
     getTaskTime();
     getTaskMoney();
+    getSelfTaskTime();
+    getSelfTaskMoney();
     if (taskName == '') {
       return Get.snackbar(
         '注意哟',
@@ -94,7 +121,7 @@ class TaskController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     } else {
-      usService.createTask(taskName, int.parse(res1), res2);
+      usService.createTask(taskName, res1, res2);
     }
   }
 
@@ -120,6 +147,11 @@ class TaskController extends GetxController {
     //   }
     //   currentTimer--;
     //   //每间隔1秒回调一下
+    // });
+    // taskTimeFocus.addListener(() {
+    //   if (!taskTimeFocus.hasFocus) {
+    //     rexTime();
+    //   }
     // });
     super.onInit();
   }

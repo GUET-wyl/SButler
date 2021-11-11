@@ -97,11 +97,11 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.USER_AGREEMENT,
-      page: () => UserAgreement(),
+      page: () => const UserAgreement(),
     ),
     GetPage(
       name: AppRoutes.PRIVACY_POLICY,
-      page: () => PrivacyPolicy(),
+      page: () => const PrivacyPolicy(),
     ),
     GetPage(
       name: AppRoutes.FEED_BACK,

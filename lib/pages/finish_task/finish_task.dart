@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-//任务
+//结束任务
 class FinishTaskPage extends StatelessWidget {
   FinishTaskPage({Key? key}) : super(key: key);
   final TaskController tc = Get.put(TaskController());
@@ -18,7 +18,7 @@ class FinishTaskPage extends StatelessWidget {
         onBack: () {
           Get.back();
         },
-        txt: '今日份学习', //任务标题----动态修改
+        txt: '今日份学习',
         mainContent: Center(
           child: Column(
             children: [
@@ -28,37 +28,46 @@ class FinishTaskPage extends StatelessWidget {
                   bottom: 35.h,
                 ),
                 child: SizedBox(
-                  height: 326.w, //限制进度条的高度
-                  width: 326.w, //限制进度条的宽度
-                  child: CircularProgressIndicator(
-                      // value: 0.6, //0~1的浮点数，用来表示进度多少;
-                      backgroundColor: GlobalColor.c39,
-                      strokeWidth: 10.w, //圆形进度条的粗细
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                          GlobalColor.c3f)), //进度颜色
-                ),
-
-                // Container(
-                //   width: 326.w,
-                //   height: 326.w,
-                //   child: Center(
-                //     child: Image.asset(
-                //       'assets/images/person.png',
-                //       width: 280.w,
-                //       height: 280.w,
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                //   decoration: BoxDecoration(
-                //     color: GlobalColor.cd5,
-                //     borderRadius: BorderRadius.circular(163.w),
-                //     border: Border.all(
-                //       width: 4.w,
-                //       color: GlobalColor.c3f,
-                //     ),
-                //   ),
-                // ),
+                    height: 326.w, //限制进度条的高度
+                    width: 326.w, //限制进度条的宽度
+                    child: Stack(
+                      children: [
+                        //环形进度条
+                        CircularProgressIndicator(
+                          // value: 0.6, //0~1的浮点数，用来表示进度多少;
+                          backgroundColor: GlobalColor.c39,
+                          strokeWidth: 10.w, //圆形进度条的粗细
+                          valueColor: const AlwaysStoppedAnimation<Color>(
+                            GlobalColor.c3f,
+                          ), //进度颜色
+                        ),
+                        //人脸区域
+                        // Positioned(
+                        //   child: Container(
+                        //     width: 326.w,
+                        //     height: 326.w,
+                        //     child: Center(
+                        //       child: Image.asset(
+                        //         'assets/images/person.png',
+                        //         width: 280.w,
+                        //         height: 280.w,
+                        //         fit: BoxFit.cover,
+                        //       ),
+                        //     ),
+                        //     decoration: BoxDecoration(
+                        //       color: GlobalColor.cd5,
+                        //       borderRadius: BorderRadius.circular(163.w),
+                        //       border: Border.all(
+                        //         width: 4.w,
+                        //         color: GlobalColor.c3f,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
+                    )),
               ),
+              //倒计时的任务时间
               Obx(
                 () => Text(
                   '${tc.currentTimer}',
@@ -73,6 +82,7 @@ class FinishTaskPage extends StatelessWidget {
               SizedBox(
                 height: 70.h,
               ),
+              //按钮
               BtnWidget(
                 btnText: '结束专注',
                 btnWidth: 192.w,
@@ -88,6 +98,7 @@ class FinishTaskPage extends StatelessWidget {
                             Get.offAndToNamed('/fail_result');
                           },
                           onCancel: () {
+                            //怎样暂停倒计时？
                             Get.back();
                           },
                         );

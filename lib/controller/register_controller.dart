@@ -130,20 +130,20 @@ class RegisterController extends GetxController {
 
   //注册按钮
   Future registerApi() async {
-    try {
-      getPhoneValue();
-      getPwdValue();
-      getPwd2Value();
-      getNickValue();
-      //开启轻提示toast
-      toastInfo(
-        msg: 'register...',
-        location: ToastGravity.BOTTOM,
-      );
-      await usService.register(phoneValue, pwdValue, nickName, avatar);
-    } catch (e) {
-      print('注册接口错误信息::$e');
-    }
+    getPhoneValue();
+    getPwdValue();
+    getPwd2Value();
+    getNickValue();
+    //开启轻提示toast
+    toastInfo(
+      msg: 'register...',
+      location: ToastGravity.BOTTOM,
+    );
+    print(111111);
+    await usService.register(phoneValue, pwdValue, nickName, avatar);
+    // } catch (e) {
+    //   print('注册接口错误信息:$e');
+    // }
   }
 
 //开启监听输入框是否有值

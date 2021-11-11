@@ -134,7 +134,7 @@ class LoginPage extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                       top: 116.h,
-                      bottom: 120.h,
+                      bottom: 100.h,
                     ),
                     child: BtnWidget(
                       onClick: () {

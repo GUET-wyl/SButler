@@ -6,8 +6,8 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:image_picker/image_picker.dart';
 
 final usService = Get.find<UserInfoService>();
-var selectedImagePath = ''.obs;
-var selectedImagePath2 = ''.obs;
+var selectedImagePath = ''.obs; //上传用户头像
+var selectedImagePath2 = ''.obs; //修改用户头像
 //上传用户头像
 void uploadImage(ImageSource imageSource) async {
   final pickedFile = await ImagePicker().pickImage(source: imageSource);
