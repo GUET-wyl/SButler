@@ -27,56 +27,54 @@ class FinishTaskPage extends StatelessWidget {
                   top: 46.h,
                   bottom: 35.h,
                 ),
-                child: SizedBox(
-                    height: 326.w, //限制进度条的高度
-                    width: 326.w, //限制进度条的宽度
-                    child: Stack(
-                      children: [
-                        //环形进度条
-                        CircularProgressIndicator(
-                          // value: 0.6, //0~1的浮点数，用来表示进度多少;
-                          backgroundColor: GlobalColor.c39,
-                          strokeWidth: 10.w, //圆形进度条的粗细
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                            GlobalColor.c3f,
-                          ), //进度颜色
+                child: Container(
+                  width: 326.w,
+                  height: 326.w,
+                  child: Stack(
+                    children: [
+                      //人脸区域
+                      Center(
+                        child: Image.asset(
+                          'assets/images/person.png',
+                          width: 280.w,
+                          height: 280.w,
+                          fit: BoxFit.cover,
                         ),
-                        //人脸区域
-                        // Positioned(
-                        //   child: Container(
-                        //     width: 326.w,
-                        //     height: 326.w,
-                        //     child: Center(
-                        //       child: Image.asset(
-                        //         'assets/images/person.png',
-                        //         width: 280.w,
-                        //         height: 280.w,
-                        //         fit: BoxFit.cover,
-                        //       ),
-                        //     ),
-                        //     decoration: BoxDecoration(
-                        //       color: GlobalColor.cd5,
-                        //       borderRadius: BorderRadius.circular(163.w),
-                        //       border: Border.all(
-                        //         width: 4.w,
-                        //         color: GlobalColor.c3f,
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
-                    )),
+                      ),
+                      //进度条
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: SizedBox(
+                          width: 326.w,
+                          height: 326.w,
+                          child: //环形进度条
+                              CircularProgressIndicator(
+                            value: 0.1, //0~1的浮点数，用来表示进度多少;
+                            backgroundColor: GlobalColor.c39, //背景色
+                            strokeWidth: 10.w, //圆形进度条的粗细
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                              GlobalColor.c3f,
+                            ), //进度颜色
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: GlobalColor.cd5,
+                    borderRadius: BorderRadius.circular(163.w),
+                  ),
+                ),
               ),
               //倒计时的任务时间
-              Obx(
-                () => Text(
-                  '${tc.currentTimer}',
-                  style: TextStyle(
-                    fontSize: 40.sp,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'FandolHei',
-                    color: GlobalColor.c3f,
-                  ),
+              Text(
+                Get.arguments,
+                style: TextStyle(
+                  fontSize: 40.sp,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'FandolHei',
+                  color: GlobalColor.c3f,
                 ),
               ),
               SizedBox(

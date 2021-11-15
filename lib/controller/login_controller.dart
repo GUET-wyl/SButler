@@ -69,7 +69,7 @@ class LoginController extends GetxController {
           RegExp(regPassword).hasMatch(pwdController.text)) {
         //开启轻提示toast
         toastInfo(
-          msg: 'logins...',
+          msg: 'login...',
           location: ToastGravity.BOTTOM,
         );
         await usService.login(phoneValue, pwdValue);
@@ -98,10 +98,10 @@ class LoginController extends GetxController {
 //销毁控制器
   @override
   void onClose() {
-    phoneController.dispose();
-    pwdController.dispose();
-    phoneFocus.dispose();
-    pwdFocus.dispose();
+    // phoneController.dispose();
+    // pwdController.dispose();
+    // phoneFocus.dispose();
+    // pwdFocus.dispose();
     super.onClose();
   }
 }

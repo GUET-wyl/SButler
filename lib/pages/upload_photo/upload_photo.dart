@@ -92,7 +92,7 @@ class UploadPhoto extends StatelessWidget {
                       height: 163.w,
                       child: Center(
                         child: Obx(
-                          () => selectedImagePath.value == ''
+                          () => selectedImagePath1.value == ''
                               ? Image.asset(
                                   'assets/images/person.png',
                                   width: 124.5.w,
@@ -101,7 +101,7 @@ class UploadPhoto extends StatelessWidget {
                                 )
                               : ClipOval(
                                   child: Image.file(
-                                    File(selectedImagePath.value),
+                                    File(selectedImagePath1.value),
                                     height: 163.w,
                                     width: 163.w,
                                     fit: BoxFit.cover,
@@ -132,7 +132,7 @@ class UploadPhoto extends StatelessWidget {
               ),
               //按钮
               Obx(
-                () => selectedImagePath.value == ''
+                () => selectedImagePath1.value == ''
                     ? Column(
                         children: [
                           Padding(

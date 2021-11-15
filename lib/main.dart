@@ -35,13 +35,12 @@ class MyApp extends StatelessWidget {
         fallbackLocale: TranslationService.fallbackLocale,
         locale: const Locale('zh', 'CN'),
         getPages: AppPages.routes,
-        // initialRoute: _isLogin() ? AppRoutes.HOME : AppRoutes.LOGIN,
-        initialRoute: _isLogin() ? AppRoutes.FINISH_TASK : AppRoutes.INDEX,
+        initialRoute: _isLogin() ? AppRoutes.INDEX : AppRoutes.GUIDE,
       ),
     );
   }
 
-//用户是否登录
+//用户是否已登录
   bool _isLogin() {
     if (usService.loginInfo?.token != null) {
       return true;

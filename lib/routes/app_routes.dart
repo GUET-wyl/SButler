@@ -1,7 +1,7 @@
 part of 'app_pages.dart';
 
 abstract class AppRoutes {
-  static const NOT_FOUND = '/not-found';
+  static const NOT_FOUND = '/not-con';
   static const GUIDE = '/';
   static const INDEX = '/index';
   static const HOME = '/home';

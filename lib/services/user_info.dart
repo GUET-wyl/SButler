@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 import 'dart:convert' as convert;
 
 class UserInfoService extends GetxService {
-  LoginInfo? loginInfo;
   static const userInfoKey = "LocalKey_UserInfo";
   final spService = Get.find<SharePreferencesService>();
+  LoginInfo? loginInfo;
   var userPhoto; //用户注册流程中上传的头像
   // 获取token
   String getToken() {
@@ -41,6 +41,7 @@ class UserInfoService extends GetxService {
 
   //初始化时，获取用户的所有登录接口信息
   Future<UserInfoService> init() async {
+    print(getLocalLoginInfo()?.avatar);
     loginInfo = getLocalLoginInfo();
     return this;
   }
@@ -125,19 +126,24 @@ class UserInfoService extends GetxService {
 
   //修改用户头像
   changeUserAvatar(file) async {
-    var result = await Apis.updatePhoto(file: file);
+    //1、上传头像
+    var result = await Apis.uploadPhoto(file: file);
     // ignore: unnecessary_null_comparison
     if (result != null) {
-      print('-----修改后的用户头像-------${result.avatar}');
-      loginInfo?.avatar = result.avatar;
-      Get.toNamed('/home');
-    } else {
-      Get.snackbar(
-        '',
-        '头像修改成功！',
-        duration: const Duration(seconds: 3),
-        colorText: GlobalColor.c3f,
-      );
+      print('-----上传后的用户头像-------${result.avatar}');
+      //2、修改头像
+      var res = await Apis.updatePhoto(avatar: result.avatar);
+      print('-----修改后的用户头像-------${res.avatar}');
+      // ignore: unnecessary_null_comparison
+      if (res != null) {
+        loginInfo?.avatar = res.avatar;
+        print(getLocalLoginInfo()?.avatar);
+        saveLoginInfo(loginInfo!);
+        print(getLocalLoginInfo()?.avatar);
+        Get.toNamed(
+          AppRoutes.HOME,
+        );
+      }
     }
   }
 
@@ -171,12 +177,9 @@ class UserInfoService extends GetxService {
     );
     // ignore: unnecessary_null_comparison
     if (result != null) {
-      print('----------创建任务api---------$result');
-      // loginInfo?.task_name = taskName;
-      // loginInfo?.task_duration = res1;
-      // loginInfo?.amount = res2;
       Get.toNamed(
         AppRoutes.FINISH_TASK,
+        arguments: result.task_duration,
       );
     }
   }

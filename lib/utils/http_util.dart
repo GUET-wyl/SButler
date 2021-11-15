@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:SButler/common/apis.dart';
 import 'package:SButler/common/urls.dart';
 import 'package:SButler/models/api_response.dart';
+import 'package:SButler/routes/app_pages.dart';
 import 'package:SButler/services/user_info.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,7 @@ class HttpUtil {
     try {
       final usService = Get.find<UserInfoService>();
       var token = usService.getToken();
-      print('---------token:$token---------------');
+      print('---------请求头的token:$token---------------');
       header['Authorization'] = token;
     } catch (_) {
       print("获取Token失败");
@@ -97,7 +98,7 @@ class HttpUtil {
         return resp.data; //data就是第二层开始的那些字段
       } else if (ErrorCode.TOKEN_ERROR == resp.code) {
         // todo token失效，跳转登录页
-        // Get.offAllNamed(AppRoutes.LOGIN);
+        Get.offAllNamed(AppRoutes.LOGIN);
         return Future.error('token invalid');
       } else {
         // 返回api error message
@@ -144,7 +145,7 @@ class HttpUtil {
         return resp.data; //data就是第二层开始的那些字段
       } else if (ErrorCode.TOKEN_ERROR == resp.code) {
         // todo token失效，跳转登录页
-        // Get.offAllNamed(AppRoutes.LOGIN);
+        Get.offAllNamed(AppRoutes.LOGIN);
         return Future.error('token invalid');
       } else {
         // 返回api error message

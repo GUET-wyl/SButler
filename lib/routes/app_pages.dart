@@ -10,6 +10,7 @@ import 'package:SButler/pages/index/index.dart';
 import 'package:SButler/pages/learn_record/learn_record.dart';
 import 'package:SButler/pages/login/login.dart';
 import 'package:SButler/pages/my_account/my_account.dart';
+import 'package:SButler/pages/not_found/not_found.dart';
 import 'package:SButler/pages/privacy_policy/privacy_policy.dart';
 import 'package:SButler/pages/register/register.dart';
 import 'package:SButler/pages/set/set.dart';
@@ -24,8 +25,16 @@ part 'app_routes.dart';
 class AppPages {
   static final routes = <GetPage>[
     GetPage(
-      name: AppRoutes.NOT_FOUND,
-      page: () => LoginPage(),
+      name: AppRoutes.GUIDE,
+      page: () => const GuidePage(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(seconds: 3),
+    ),
+    GetPage(
+      name: AppRoutes.INDEX,
+      page: () => const IndexPage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(seconds: 2),
     ),
     GetPage(
       name: AppRoutes.LOGIN,
@@ -36,14 +45,6 @@ class AppPages {
       page: () => HomePage(),
     ),
     GetPage(
-      name: AppRoutes.GUIDE,
-      page: () => GuidePage(),
-    ),
-    GetPage(
-      name: AppRoutes.INDEX,
-      page: () => IndexPage(),
-    ),
-    GetPage(
       name: AppRoutes.REGISTER,
       page: () => RegisterPage(),
     ),
@@ -52,44 +53,8 @@ class AppPages {
       page: () => UploadPhoto(),
     ),
     GetPage(
-      name: AppRoutes.SET,
-      page: () => SetPage(),
-    ),
-    GetPage(
-      name: AppRoutes.MY_ACCOUNT,
-      page: () => MyAccountPage(),
-    ),
-    GetPage(
-      name: AppRoutes.TASK_DETAILS,
-      page: () => TaskDetails(),
-    ),
-    GetPage(
-      name: AppRoutes.BAD_NET,
-      page: () => NoNetPage(),
-    ),
-    GetPage(
-      name: AppRoutes.SUCCESS_RESULT,
-      page: () => SuccessPage(),
-    ),
-    GetPage(
-      name: AppRoutes.FAIL_RESULT,
-      page: () => FailPage(),
-    ),
-    GetPage(
-      name: AppRoutes.LEARN_RECORDS,
-      page: () => RecordsPage(),
-    ),
-    GetPage(
-      name: AppRoutes.CREATE_TASK,
-      page: () => CreateTask(),
-    ),
-    GetPage(
-      name: AppRoutes.FINISH_TASK,
-      page: () => FinishTaskPage(),
-    ),
-    GetPage(
       name: AppRoutes.CHANGE_AVATAR,
-      page: () => ChangeAvatar(),
+      page: () => const ChangeAvatar(),
     ),
     GetPage(
       name: AppRoutes.CHANGE_NICK,
@@ -106,6 +71,46 @@ class AppPages {
     GetPage(
       name: AppRoutes.FEED_BACK,
       page: () => FeedBackPage(),
+    ),
+    GetPage(
+      name: AppRoutes.SET,
+      page: () => SetPage(),
+    ),
+    GetPage(
+      name: AppRoutes.SUCCESS_RESULT,
+      page: () => const SuccessPage(),
+    ),
+    GetPage(
+      name: AppRoutes.FAIL_RESULT,
+      page: () => const FailPage(),
+    ),
+    GetPage(
+      name: AppRoutes.LEARN_RECORDS,
+      page: () => RecordsPage(),
+    ),
+    GetPage(
+      name: AppRoutes.CREATE_TASK,
+      page: () => CreateTask(),
+    ),
+    GetPage(
+      name: AppRoutes.FINISH_TASK,
+      page: () => FinishTaskPage(),
+    ),
+    GetPage(
+      name: AppRoutes.MY_ACCOUNT,
+      page: () => MyAccountPage(),
+    ),
+    GetPage(
+      name: AppRoutes.TASK_DETAILS,
+      page: () => TaskDetails(),
+    ),
+    GetPage(
+      name: AppRoutes.NOT_FOUND,
+      page: () => NotConPage(),
+    ),
+    GetPage(
+      name: AppRoutes.BAD_NET,
+      page: () => const NoNetPage(),
     ),
   ];
 }

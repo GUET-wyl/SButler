@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class NotFoundPage extends StatelessWidget {
-  NotFoundPage({Key? key}) : super(key: key);
+class NotConPage extends StatelessWidget {
+  NotConPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(

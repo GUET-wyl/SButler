@@ -19,137 +19,139 @@ class LoginPage extends StatelessWidget {
           Get.toNamed('/index');
         },
         txt: '登录',
-        mainContent: ListView(
-          children: [
-            SizedBox(
-              height: 36.h,
-            ),
-            //LOGO
-            Center(
-              child: Image.asset(
-                'assets/images/star.png',
-                fit: BoxFit.fill,
-                width: 119.w,
-                height: 80.w,
+        mainContent: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 36.h,
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 45.w,
-                top: 19.h,
-                right: 280.w,
-              ),
-              child: Text(
-                '你好',
-                style: TextStyle(
-                  color: GlobalColor.c3f,
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'PingFang SC',
+              //LOGO
+              Center(
+                child: Image.asset(
+                  'assets/images/star.png',
+                  fit: BoxFit.fill,
+                  width: 119.w,
+                  height: 80.w,
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 45.w,
-                top: 12.h,
-                right: 100.w,
-              ),
-              child: Text(
-                '欢迎回到SButler',
-                style: TextStyle(
-                  color: GlobalColor.c3f,
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'PingFang SC',
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 45.w,
+                  top: 19.h,
+                  right: 280.w,
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 45.w,
-                top: 12.h,
-                right: 304.w,
-              ),
-              child: Container(
-                width: 26.w,
-                height: 5.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.r),
-                  color: GlobalColor.c4d6,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 28.h,
-            ),
-            Center(
-              child: Column(
-                children: [
-                  //手机号
-                  InputWidget(
-                    hintText: '手机号',
-                    node: lc.phoneFocus,
-                    controller: lc.phoneController,
+                child: Text(
+                  '你好',
+                  style: TextStyle(
+                    color: GlobalColor.c3f,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'PingFang SC',
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 5.h,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 45.w,
+                  top: 12.h,
+                  right: 100.w,
+                ),
+                child: Text(
+                  '欢迎回到SButler',
+                  style: TextStyle(
+                    color: GlobalColor.c3f,
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'PingFang SC',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 45.w,
+                  top: 12.h,
+                  right: 304.w,
+                ),
+                child: Container(
+                  width: 26.w,
+                  height: 5.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.r),
+                    color: GlobalColor.c4d6,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 28.h,
+              ),
+              Center(
+                child: Column(
+                  children: [
+                    //手机号
+                    InputWidget(
+                      hintText: '手机号',
+                      node: lc.phoneFocus,
+                      controller: lc.phoneController,
                     ),
-                    child: Obx(
-                      () => Text(
-                        '${lc.phoneErrorText}',
-                        style: TextStyle(
-                          color: GlobalColor.c3f,
-                          fontSize: 14.sp,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 5.h,
+                      ),
+                      child: Obx(
+                        () => Text(
+                          '${lc.phoneErrorText}',
+                          style: TextStyle(
+                            color: GlobalColor.c3f,
+                            fontSize: 14.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  //密码
-                  Input1Widget(
-                    hintText: '密码',
-                    node: lc.pwdFocus,
-                    obscureText: true,
-                    controller: lc.pwdController,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 5.h,
+                    SizedBox(
+                      height: 10.h,
                     ),
-                    child: Obx(
-                      () => Text(
-                        '${lc.pwdErrorText}',
-                        style: TextStyle(
-                          color: GlobalColor.c3f,
-                          fontSize: 14.sp,
+                    //密码
+                    Input1Widget(
+                      hintText: '密码',
+                      node: lc.pwdFocus,
+                      obscureText: true,
+                      controller: lc.pwdController,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 5.h,
+                      ),
+                      child: Obx(
+                        () => Text(
+                          '${lc.pwdErrorText}',
+                          style: TextStyle(
+                            color: GlobalColor.c3f,
+                            fontSize: 14.sp,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  //按钮
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: 116.h,
-                      bottom: 100.h,
+                    //按钮
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 116.h,
+                        bottom: 100.h,
+                      ),
+                      child: BtnWidget(
+                        onClick: () {
+                          lc.loginApi();
+                        },
+                        btnText: '进入星球',
+                        btnWidth: 192.w,
+                        btnHeight: 46.h,
+                      ),
                     ),
-                    child: BtnWidget(
-                      onClick: () {
-                        lc.loginApi();
-                      },
-                      btnText: '进入星球',
-                      btnWidth: 192.w,
-                      btnHeight: 46.h,
-                    ),
-                  ),
-                  const AgreementAndPrivacy(),
-                ],
-              ),
-            )
-          ],
+                    const AgreementAndPrivacy(),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

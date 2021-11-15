@@ -6,11 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 //非密码框
+// ignore: must_be_immutable
 class InputWidget extends StatelessWidget {
   final TextEditingController? controller;
   final FocusNode? node;
   final bool? obscureText;
   final String? hintText;
+  // ignore: prefer_typing_uninitialized_variables
   var btnBgColor;
   InputWidget({
     Key? key,

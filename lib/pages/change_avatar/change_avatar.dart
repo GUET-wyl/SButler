@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ChangeAvatar extends StatelessWidget {
-  ChangeAvatar({Key? key}) : super(key: key);
+  const ChangeAvatar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +28,7 @@ class ChangeAvatar extends StatelessWidget {
                 ),
                 child: //展示图片
                     Obx(
-                  () => selectedImagePath.value == ''
+                  () => selectedImagePath2.value == ''
                       ? Container(
                           width: 280.w,
                           height: 280.w,
@@ -43,7 +43,7 @@ class ChangeAvatar extends StatelessWidget {
                         )
                       : ClipOval(
                           child: Image.file(
-                            File(selectedImagePath.value),
+                            File(selectedImagePath2.value),
                             height: 280.w,
                             width: 280.w,
                             fit: BoxFit.cover,

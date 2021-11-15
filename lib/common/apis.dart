@@ -187,11 +187,11 @@ class Apis {
 
   //修改用户头像
   static Future<AvatarInfo> updatePhoto({
-    required file,
+    String? avatar,
   }) {
-    return HttpUtil.get(
+    return HttpUtil.post(
       Urls.updateAvatar,
-      data: file,
+      data: {'avatar': avatar},
     ).then((value) {
       print('-----修改用户头像处的value--------$value');
       try {
@@ -221,11 +221,6 @@ class Apis {
     ).then((value) {
       //value是整个接口返回的内容
       print('----创建任务的value---${json.encode(value)}');
-      try {
-        CreateTaskInfo.fromJson(value);
-      } catch (e) {
-        print('-----创建任务的Error------$e--');
-      }
       return CreateTaskInfo.fromJson(value);
     }).catchError((e) => print("创建任务接口处的信息:$e"));
   }

@@ -44,7 +44,7 @@ class FeedBackPage extends StatelessWidget {
                               maxLength: 200,
                               style: TextStyle(
                                 fontSize: 14.sp,
-                                color: GlobalColor.c3f.withOpacity(.2),
+                                color: GlobalColor.c3f.withOpacity(.8),
                                 fontWeight: FontWeight.w400,
                                 fontFamily: 'PingFang SC',
                               ),

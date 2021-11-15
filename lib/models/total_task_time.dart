@@ -1,15 +1,15 @@
 class TotalTaskTime {
   TotalTaskTime({
-    this.totalTaskTime,
+    this.total_task_time,
   });
 
-  int? totalTaskTime;
+  int? total_task_time;
 
   factory TotalTaskTime.fromJson(Map<String, dynamic> json) => TotalTaskTime(
-        totalTaskTime: json["total_task_time"],
+        total_task_time: json["total_task_time"],
       );
 
   Map<String, dynamic> toJson() => {
-        "total_task_time": totalTaskTime,
+        "total_task_time": total_task_time,
       };
 }

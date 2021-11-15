@@ -121,7 +121,7 @@ class RegisterController extends GetxController {
     } else {
       Get.snackbar(
         '注意哟',
-        '请输入注册信息',
+        '请输入符合规范的注册信息',
         colorText: GlobalColor.c4d6,
         snackPosition: SnackPosition.BOTTOM,
       );

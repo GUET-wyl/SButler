@@ -1,17 +1,17 @@
 import 'package:SButler/global/public.dart';
 import 'package:SButler/services/user_info.dart';
-import 'package:SButler/utils/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'dialog.dart';
 
 class DrawerWidget extends StatelessWidget {
+  DrawerWidget({Key? key}) : super(key: key);
   final uS = Get.find<UserInfoService>();
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 172.w,
+      width: 180.w,
       color: GlobalColor.c1a,
       child: ListView(
         padding: EdgeInsets.zero,
@@ -29,23 +29,15 @@ class DrawerWidget extends StatelessWidget {
                   width: 50.w,
                   height: 50.w,
                   child: Center(
-                      child: Obx(
-                    () => selectedImagePath.value == ''
-                        ? Image.asset(
-                            'assets/images/person.png',
-                            width: 38.w,
-                            height: 33.w,
-                            fit: BoxFit.cover,
-                          )
-                        : ClipOval(
-                            child: Image.network(
-                              '${uS.loginInfo?.avatar}',
-                              width: 50.w,
-                              height: 50.w,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                  )),
+                    child: ClipOval(
+                      child: Image.network(
+                        '${uS.loginInfo?.avatar}',
+                        width: 50.w,
+                        height: 50.w,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                   decoration: BoxDecoration(
                     color: GlobalColor.cd5,
                     borderRadius: BorderRadius.circular(23.5.w),
@@ -56,16 +48,31 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 13.w,
+                  width: 10.w,
                 ),
                 //显示用户昵称
-                Text(
-                  '${uS.loginInfo?.nickname}',
-                  style: TextStyle(
-                    color: GlobalColor.c3f,
-                    fontSize: 16.sp,
-                    fontFamily: 'PingFang SC',
-                    fontWeight: FontWeight.w500,
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return DialogWidget(
+                          onOk: () {
+                            Get.back();
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: Text(
+                    '${uS.loginInfo?.nickname}',
+                    style: TextStyle(
+                      color: GlobalColor.c3f,
+                      fontSize: 16.sp,
+                      fontFamily: 'PingFang SC',
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ],
@@ -132,18 +139,6 @@ class DrawerWidget extends StatelessWidget {
           ),
           _DrawerCon(
             onClick: () {
-              Get.toNamed('/logout');
-            },
-            photo: Image.asset(
-              'assets/images/set.png',
-              width: 20.w,
-              height: 20.w,
-              fit: BoxFit.cover,
-            ),
-            txt: '设置',
-          ),
-          _DrawerCon(
-            onClick: () {
               Get.toNamed('/feedback');
             },
             photo: Image.asset(
@@ -153,7 +148,18 @@ class DrawerWidget extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             txt: '意见反馈',
-            // btm: 361,
+          ),
+          _DrawerCon(
+            onClick: () {
+              Get.toNamed('/logout');
+            },
+            photo: Image.asset(
+              'assets/images/set.png',
+              width: 20.w,
+              height: 20.w,
+              fit: BoxFit.cover,
+            ),
+            txt: '设置',
           ),
         ],
       ),

@@ -19,39 +19,39 @@ class TaskDetails {
 class Task {
   Task({
     this.id,
-    this.taskName,
-    this.userId,
+    this.task_name,
+    this.user_id,
     this.state,
     this.amount,
-    this.taskDuration,
-    this.endTime,
+    this.task_duration,
+    this.end_time,
   });
 
   String? id;
-  String? taskName;
-  String? userId;
+  String? task_name;
+  String? user_id;
   int? state;
   int? amount;
-  int? taskDuration;
-  dynamic endTime;
+  int? task_duration;
+  dynamic end_time;
 
   factory Task.fromJson(Map<String, dynamic> json) => Task(
         id: json["id"],
-        taskName: json["task_name"],
-        userId: json["user_id"],
+        task_name: json["task_name"],
+        user_id: json["user_id"],
         state: json["state"],
         amount: json["amount"],
-        taskDuration: json["task_duration"],
-        endTime: json["end_time"],
+        task_duration: json["task_duration"],
+        end_time: json["end_time"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "task_name": taskName,
-        "user_id": userId,
+        "task_name": task_name,
+        "user_id": user_id,
         "state": state,
         "amount": amount,
-        "task_duration": taskDuration,
-        "end_time": endTime,
+        "task_duration": task_duration,
+        "end_time": end_time,
       };
 }
