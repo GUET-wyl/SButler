@@ -137,7 +137,6 @@ class UserInfoService extends GetxService {
       // ignore: unnecessary_null_comparison
       if (res != null) {
         loginInfo?.avatar = res.avatar;
-        print(getLocalLoginInfo()?.avatar);
         saveLoginInfo(loginInfo!);
         print(getLocalLoginInfo()?.avatar);
         Get.toNamed(

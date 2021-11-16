@@ -19,109 +19,110 @@ class DialogWidget extends StatelessWidget {
         backgroundColor: Colors.black12,
         body: Center(
           child: Container(
-              width: 329.w,
-              height: 214.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                color: GlobalColor.c330,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 45.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12.r),
-                        topRight: Radius.circular(12.r),
-                      ),
-                      color: GlobalColor.c329,
+            width: 329.w,
+            height: 214.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.r),
+              color: GlobalColor.c330,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: 45.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12.r),
+                      topRight: Radius.circular(12.r),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            '',
-                          ),
-                          Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/path.png',
-                                fit: BoxFit.cover,
-                                width: 19.w,
-                                height: 19.w,
-                              ),
-                              SizedBox(
-                                width: 3.w,
-                              ),
-                              Text(
-                                '修改昵称',
-                                style: TextStyle(
-                                  color: GlobalColor.cfa,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'PingFang SC;',
-                                  fontSize: 15.sp,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: Image.asset(
-                              'assets/images/close.png',
+                    color: GlobalColor.c329,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          '',
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/path.png',
                               fit: BoxFit.cover,
-                              width: 15.w,
-                              height: 15.w,
+                              width: 19.w,
+                              height: 19.w,
                             ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              '修改昵称',
+                              style: TextStyle(
+                                color: GlobalColor.cfa,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'PingFang SC;',
+                                fontSize: 15.sp,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Image.asset(
+                            'assets/images/close.png',
+                            fit: BoxFit.cover,
+                            width: 15.w,
+                            height: 15.w,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.h),
-                        child: InputWidget(
-                          btnBgColor: GlobalColor.c45.withOpacity(.5),
-                          hintText: '请输入你的昵称',
-                          node: nc.nickNameFocus,
-                          controller: nc.nickNameController,
-                        ),
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.h),
+                      child: InputWidget(
+                        btnBgColor: GlobalColor.c45.withOpacity(.5),
+                        hintText: '请输入你的昵称',
+                        node: nc.nickNameFocus,
+                        controller: nc.nickNameController,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 5.h,
-                        ),
-                        child: Obx(
-                          () => Text(
-                            '${nc.nickNameErrorText}',
-                            style: TextStyle(
-                              color: GlobalColor.c3f,
-                              fontSize: 14.sp,
-                            ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 5.h,
+                      ),
+                      child: Obx(
+                        () => Text(
+                          '${nc.nickNameErrorText}',
+                          style: TextStyle(
+                            color: GlobalColor.c3f,
+                            fontSize: 14.sp,
                           ),
                         ),
                       ),
-                      BtnWidget(
-                        onClick: () {
-                          nc.changeNicknameApi();
-                          Get.back();
-                        },
-                        btnText: '确认',
-                        btnWidth: 160.w,
-                        btnHeight: 36.h,
-                      ),
-                    ],
-                  )
-                ],
-              )),
+                    ),
+                    BtnWidget(
+                      onClick: () {
+                        nc.changeNicknameApi();
+                        Get.back();
+                      },
+                      btnText: '确认',
+                      btnWidth: 160.w,
+                      btnHeight: 36.h,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

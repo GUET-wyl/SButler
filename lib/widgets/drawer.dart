@@ -1,8 +1,10 @@
 import 'package:SButler/global/public.dart';
 import 'package:SButler/services/user_info.dart';
+import 'package:SButler/utils/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'dialog.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -14,7 +16,6 @@ class DrawerWidget extends StatelessWidget {
       width: 180.w,
       color: GlobalColor.c1a,
       child: ListView(
-        padding: EdgeInsets.zero,
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -25,30 +26,18 @@ class DrawerWidget extends StatelessWidget {
             child: Row(
               children: [
                 //显示用户头像
-                Container(
-                  width: 50.w,
-                  height: 50.w,
-                  child: Center(
-                    child: ClipOval(
-                      child: Image.network(
-                        '${uS.loginInfo?.avatar}',
-                        width: 50.w,
-                        height: 50.w,
-                        fit: BoxFit.cover,
-                      ),
+                TextButton(
+                  onPressed: () {
+                    changeImage(ImageSource.gallery);
+                  },
+                  child: ClipOval(
+                    child: Image.network(
+                      '${uS.loginInfo?.avatar}',
+                      width: 47.w,
+                      height: 47.w,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  decoration: BoxDecoration(
-                    color: GlobalColor.cd5,
-                    borderRadius: BorderRadius.circular(23.5.w),
-                    border: Border.all(
-                      width: 2.w,
-                      color: GlobalColor.c3f,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10.w,
                 ),
                 //显示用户昵称
                 TextButton(
@@ -69,7 +58,7 @@ class DrawerWidget extends StatelessWidget {
                     '${uS.loginInfo?.nickname}',
                     style: TextStyle(
                       color: GlobalColor.c3f,
-                      fontSize: 16.sp,
+                      fontSize: 15.sp,
                       fontFamily: 'PingFang SC',
                       fontWeight: FontWeight.w500,
                     ),

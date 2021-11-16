@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         fallbackLocale: TranslationService.fallbackLocale,
         locale: const Locale('zh', 'CN'),
         getPages: AppPages.routes,
-        initialRoute: _isLogin() ? AppRoutes.INDEX : AppRoutes.GUIDE,
+        initialRoute: _isLogin() ? AppRoutes.HOME : AppRoutes.GUIDE,
       ),
     );
   }
